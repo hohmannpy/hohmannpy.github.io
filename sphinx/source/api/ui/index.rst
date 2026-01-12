@@ -7,3 +7,5 @@ User Interface (:mod:`hohmannpy.ui`)
    :maxdepth: 2
 
    camera
+   render_engine
+   dy_render_engine
