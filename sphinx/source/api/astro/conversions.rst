@@ -1,4 +1,4 @@
-Conversions
+astro.conversions
 =================
 
 .. currentmodule:: hohmannpy.astro.conversions
