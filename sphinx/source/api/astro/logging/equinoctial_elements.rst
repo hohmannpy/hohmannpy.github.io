@@ -1,5 +1,5 @@
-astro.ElementsLogger
+astro.EquinoctialElementsLogger
 ===================================
 
 .. currentmodule:: hohmannpy.astro.logging
-.. autoclass:: ElementsLogger
+.. autoclass:: EquinoctialElementsLogger

@@ -11,7 +11,8 @@ works see :class:`~hohmannpy.astro.logging.Logger` for the abstract base class t
 
    Logger
    StateLogger
-   ElementsLogger
+   ClassicalElementsLogger
+   EquinoctialElementsLogger
    EccentricAnomalyLogger
    UniversalVariableLogger
 
@@ -21,6 +22,7 @@ works see :class:`~hohmannpy.astro.logging.Logger` for the abstract base class t
 
    logging/base
    logging/state
-   logging/elements
+   logging/classical_elements
+   logging/equinoctial_elements
    logging/eccentric_anomaly
    logging/universal_variable
