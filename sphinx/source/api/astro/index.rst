@@ -7,6 +7,7 @@ Astrodynamics (:mod:`hohmannpy.astro`)
    :maxdepth: 1
 
    time
+   orbit
    conversions
    logging
-   orbit
+   perturbations
