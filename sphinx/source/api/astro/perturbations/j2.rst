@@ -1,0 +1,6 @@
+astro.J2
+===================================
+
+.. currentmodule:: hohmannpy.astro.perturbations
+.. autoclass:: J2
+   :members:

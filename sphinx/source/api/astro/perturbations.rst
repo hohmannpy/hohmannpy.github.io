@@ -10,6 +10,7 @@ A set of perturbing functions that can be used to model deviations from two-body
 
    Perturbation
    NonSphericalEarth
+   J2
    AtmosphericDrag
 
 .. toctree::
@@ -18,4 +19,5 @@ A set of perturbing functions that can be used to model deviations from two-body
 
    perturbations/base
    perturbations/nonspherical
+   perturbations/j2
    perturbations/drag
