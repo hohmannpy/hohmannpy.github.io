@@ -12,6 +12,7 @@ A set of perturbing functions that can be used to model deviations from two-body
    NonSphericalEarth
    J2
    AtmosphericDrag
+   ThirdBody
 
 .. toctree::
    :maxdepth: 1
@@ -21,3 +22,4 @@ A set of perturbing functions that can be used to model deviations from two-body
    perturbations/nonspherical
    perturbations/j2
    perturbations/drag
+   perturbations/third_body
