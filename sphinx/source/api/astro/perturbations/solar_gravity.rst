@@ -1,6 +1,6 @@
-astro.ThirdBody
+astro.SolarGravity
 ===================================
 
 .. currentmodule:: hohmannpy.astro.perturbations
-.. autoclass:: ThirdBody
+.. autoclass:: SolarGravity
    :members:
