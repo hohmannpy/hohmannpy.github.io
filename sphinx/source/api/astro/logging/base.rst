@@ -1,6 +1,6 @@
 astro.Logger
 ===================================
 
-.. currentmodule:: hohmannpy.astro.logging
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: Logger
    :members:

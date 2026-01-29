@@ -1,6 +1,6 @@
 astro.J2
 ===================================
 
-.. currentmodule:: hohmannpy.astro.perturbations
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: J2
    :members:

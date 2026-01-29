@@ -1,5 +1,5 @@
 astro.StateLogger
 ===================================
 
-.. currentmodule:: hohmannpy.astro.logging
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: StateLogger

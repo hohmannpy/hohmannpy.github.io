@@ -42,8 +42,19 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
+autodoc_default_options = {
+    "show-return-type": False,
+}
+autodoc_typehints = "none"
+
+napoleon_numpy_docstring = True
+napoleon_google_docstring = False
+napoleon_include_private_with_doc = False
+napoleon_use_param = True
+napoleon_use_rtype = False
+napoleon_use_ivar = True
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-
 html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']

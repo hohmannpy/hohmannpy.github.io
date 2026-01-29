@@ -1,5 +1,5 @@
 astro.EccentricAnomalyLogger
 ===================================
 
-.. currentmodule:: hohmannpy.astro.logging
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: EccentricAnomalyLogger

@@ -13,7 +13,7 @@ A set of perturbing functions that can be used to model deviations from two-body
    NonSphericalEarth
    J2
    AtmosphericDrag
-   ThirdBody
+   ThirdBodyGravity
    LunarGravity
    SolarGravity
    SolarRadiation

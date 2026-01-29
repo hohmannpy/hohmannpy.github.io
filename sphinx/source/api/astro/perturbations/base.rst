@@ -1,6 +1,6 @@
 astro.Perturbation
 ===================================
 
-.. currentmodule:: hohmannpy.astro.perturbations
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: Perturbation
    :members:

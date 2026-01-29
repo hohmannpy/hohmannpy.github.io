@@ -1,6 +1,6 @@
 astro.SolarRadiation
 ===================================
 
-.. currentmodule:: hohmannpy.astro.perturbations
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: SolarRadiation
    :members:

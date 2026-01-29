@@ -1,6 +1,6 @@
 astro.SolarGravity
 ===================================
 
-.. currentmodule:: hohmannpy.astro.perturbations
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: SolarGravity
    :members:

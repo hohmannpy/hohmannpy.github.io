@@ -1,6 +1,6 @@
 astro.LunarGravity
 ===================================
 
-.. currentmodule:: hohmannpy.astro.perturbations
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: LunarGravity
    :members:

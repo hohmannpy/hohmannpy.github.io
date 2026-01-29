@@ -1,5 +1,5 @@
 astro.UniversalVariableLogger
 ===================================
 
-.. currentmodule:: hohmannpy.astro.logging
+.. currentmodule:: hohmannpy.astro
 .. autoclass:: UniversalVariableLogger
