@@ -1,7 +1,7 @@
 astro.conversions
 =================
 
-.. currentmodule:: hohmannpy.astro.conversions
+.. currentmodule:: hohmannpy.astro
 
 A set of conversions used to move between different methods of parameterizing and determining an orbit.
 
