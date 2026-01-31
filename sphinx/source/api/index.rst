@@ -6,5 +6,5 @@ API Reference
    :caption: API Reference
 
    astro/index
-   dynamics
+   dynamics/index
    ui/index

@@ -6,8 +6,9 @@ Astrodynamics (:mod:`hohmannpy.astro`)
 .. toctree::
    :maxdepth: 1
 
-   time
-   orbit
-   conversions
+   conversions/index
    logging
-   perturbations
+   perturbations/index
+   propagation/index
+   orbit
+   time

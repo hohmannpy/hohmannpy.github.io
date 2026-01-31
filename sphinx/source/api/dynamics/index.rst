@@ -1,5 +1,7 @@
 Dynamics (:mod:`hohmannpy.dynamics`)
-=====================================
+=========================================
 
 .. automodule:: hohmannpy.dynamics
-   :no-members:
+
+.. toctree::
+   :maxdepth: 1
