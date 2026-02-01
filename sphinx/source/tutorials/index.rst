@@ -3,6 +3,7 @@ Tutorials
 
 .. toctree::
    :maxdepth: 2
-   :caption: Theory
+   :caption: Tutorials
 
-   getting_started
+   quickstart
+   increasing_fidelity

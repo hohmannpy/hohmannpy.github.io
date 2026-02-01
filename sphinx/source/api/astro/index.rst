@@ -7,8 +7,12 @@ Astrodynamics (:mod:`hohmannpy.astro`)
    :maxdepth: 1
 
    conversions/index
-   logging
+   earth
+   logging/index
+   mission
+   moon
    perturbations/index
    propagation/index
    orbit
+   spacecraft
    time

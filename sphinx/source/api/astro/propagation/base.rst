@@ -1,6 +1,6 @@
-astro.Propagation
+astro.Propagator
 =================
 
 .. currentmodule:: hohmannpy.astro
-.. autoclass:: Propagation
+.. autoclass:: Propagator
    :members:

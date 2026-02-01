@@ -1,2 +1,2 @@
-Getting Started
+Quickstart Guide
 =======================

@@ -5,4 +5,4 @@ Theory
    :maxdepth: 2
    :caption: Theory
 
-   intro
+   readings
