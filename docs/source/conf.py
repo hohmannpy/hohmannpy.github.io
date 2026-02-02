@@ -46,6 +46,7 @@ autodoc_default_options = {
     "show-return-type": False,
 }
 autodoc_typehints = "none"
+autodoc_mock_imports = ['numpy', 'scipy', 'pygfx', 'pandas', 'imageio', 'pylinalg', 'rendercanvas']
 
 napoleon_numpy_docstring = True
 napoleon_google_docstring = False
