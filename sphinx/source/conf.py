@@ -22,7 +22,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.napoleon',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.mathjax',
+    'sphinx_favicon'
 ]
 
 templates_path = ['_templates']
@@ -37,7 +38,7 @@ html_theme_options = {
     },
 }
 html_context = {"default_mode": "dark"}
-html_favicon = "_static/favicon.png"
+favicons = ["_static/favicon.png"]
 html_css_files = [
     'css/custom.css',
 ]
@@ -58,4 +59,3 @@ napoleon_use_ivar = True
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 html_theme = "pydata_sphinx_theme"
-html_static_path = ['_static']
