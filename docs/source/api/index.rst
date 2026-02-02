@@ -2,8 +2,7 @@ API Reference
 =======================
 
 .. toctree::
-   :maxdepth: 1
-   :caption: API Reference
+   :maxdepth: 2
 
    astro/index
    dynamics/index

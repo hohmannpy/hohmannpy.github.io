@@ -42,6 +42,20 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
+html_static_path = ['_static']
+html_theme_options = {
+    "logo": {
+        "text": "HohmannPy",
+        "image_light": "_static\\square_logo.png",
+        "image_dark": "_static\\square_logo.png",
+    },
+}
+html_context = {"default_mode": "dark"}
+html_favicon = "_static\\square_logo.png"
+html_css_files = [
+    'css/custom.css',
+]
+
 autodoc_default_options = {
     "show-return-type": False,
 }
