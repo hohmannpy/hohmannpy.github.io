@@ -1,1 +1,3 @@
 furo==2021.11.16
+git+https://github.com/hohmannpy/hohmannpy.git@main
+pydata-sphinx-theme
