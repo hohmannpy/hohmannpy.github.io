@@ -37,7 +37,7 @@ html_theme_options = {
     },
 }
 html_context = {"default_mode": "dark"}
-html_favicon = "_static/square_logo.png"
+html_favicon = "_static/favicon.png"
 html_css_files = [
     'css/custom.css',
 ]
