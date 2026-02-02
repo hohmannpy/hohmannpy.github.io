@@ -1,8 +1,0 @@
-html[data-theme="light"] {
-    --pst-color-primary: #5fc19a;
-    --pst-color-inline-code-links: #5fc19a;
-}
-html[data-theme="dark"] {
-    --pst-color-primary: #5fc19a;
-    --pst-color-inline-code-links: #5fc19a;
-}
