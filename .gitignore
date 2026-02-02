@@ -10,6 +10,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+build/
 develop-eggs/
 dist/
 downloads/
@@ -296,4 +297,5 @@ __marimo__/
 
 # Pycharm
 .idea/
-/docs/build/doctrees/
+/docs/build/
+/docs/build/html/

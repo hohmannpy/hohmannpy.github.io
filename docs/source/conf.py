@@ -13,7 +13,7 @@ import hohmannpy
 project = 'HohmannPy'
 copyright = '2026, Nicholas Hirsch'
 author = 'Nicholas Hirsch'
-release = 'v0.0.1'
+release = 'v0.0.7'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
