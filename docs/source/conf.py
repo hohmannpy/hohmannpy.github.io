@@ -6,7 +6,6 @@
 # -- Code import -------------------------------------------------------------
 import hohmannpy
 
-
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
