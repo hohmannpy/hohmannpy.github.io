@@ -38,7 +38,7 @@ html_theme_options = {
     },
 }
 html_context = {"default_mode": "dark"}
-favicons = ["_static/favicon.png"]
+favicons = ["favicon.png"]
 html_css_files = [
     'css/custom.css',
 ]
