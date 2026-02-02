@@ -15,8 +15,6 @@ How this works (sorry it's so scuffed at the moment).
 NOTE: Generated .html files appear in \build, if you want to clear this folder run ".\make clean".
 NOTE 2: Make sure the Sphinx "just-the-docs" theme is installed.
 """
-import sys
-sys.path.insert(0, "..\\..\\..\\hohmannpy")
 import hohmannpy
 
 
