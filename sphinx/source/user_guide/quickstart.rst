@@ -76,9 +76,9 @@ through a the :class:`~hohmannpy.astro.Time` class. This takes in the current Gr
 UT1 is based of the rotation rate of the Earth. It is similar to Universal Coordinated Time (UTC+0) but the latter
 slowly diverges from the former over time. When this divergence grows to one second a leap second is added to (UTC+0) to
 bring it back into alignment with UT1. For more info on UT1 and how to compute it see `Universal Time
-<https://aa.usno.navy.mil/faq/UT>`_ by the *United States Navy's Astronomical Applications Department*. For most purposes
-however, it is sufficient to approximate UT1 and UTC as being equivalent. ``Mission`` takes two time objects, one for
-the start time and one for the end time which we create below.
+<https://aa.usno.navy.mil/faq/UT>`_ by the *United States Navy's Astronomical Applications Department*. For most
+purposes however, it is sufficient to approximate UT1 and UTC as being equivalent. ``Mission`` takes two time objects,
+one forthe start time and one for the end time which we create below.
 
 .. code-block:: python
 
@@ -198,8 +198,8 @@ Finally, if we wanted to, we could log all data recorded by the loggers in a CSV
 :meth:`~hohmannpy.astro.Mission.to_csv()`.
 
 
-Increasing Simulation Complexity
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Next Steps
+^^^^^^^^^^
 As previously mentioned, there are a variety of ways to increase the scope or accuracy of a ``Mission``. For the
 remainder of this tutorial we'll focus on two simple ones: adding addition satellites, and adding in the influence of
 the J2-effect (a perturbation due to the Earth's equatorial bulge). Our current satellite won't experience the full J2
