@@ -42,6 +42,7 @@
     <script src="../_static/documentation_options.js?v=401b779c"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/quickstart';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -336,6 +337,398 @@
                   
   <section id="quickstart-guide">
 <h1>Quickstart Guide<a class="headerlink" href="#quickstart-guide" title="Link to this heading">#</a></h1>
+<p>This guide is intended to familiarize the user with the basics of orbit propagation and determination in HohmannPy as
+well as how to display results.</p>
+<section id="your-first-simulation">
+<h2>Your First Simulation<a class="headerlink" href="#your-first-simulation" title="Link to this heading">#</a></h2>
+<p>The core of HohmannPy is the <a class="reference internal" href="../api/astro/mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a> class. Everything needed to simulate an orbit is
+passed into this class during instantiation and then simulation and data generation is handled through methods of this
+class. <code class="docutils literal notranslate"><span class="pre">Mission</span></code> takes a wide variety of parameters to allow for high levels of customization over a mission, but the
+minimum required parameter set is actually fairly straight forward. The user simply needs to pass in information about
+the spacecraft to simulate as well as the duration to simulate them for.</p>
+<p>Spacecraft are created using the <a class="reference internal" href="../api/astro/spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a> class. This holds all relevant information about a
+satellite the <code class="docutils literal notranslate"><span class="pre">Mission</span></code> needs for propagation according its orbit at any point in time. Again, this class can be
+instantiated with a slew of optional parameters but for a basic mission only three are needed: <code class="docutils literal notranslate"><span class="pre">name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">starting_orbit</span></code>, and <code class="docutils literal notranslate"><span class="pre">color</span></code>. The name and color are both <code class="docutils literal notranslate"><span class="pre">str</span></code> input by the user, with the latter being in
+hexadecimal. <code class="docutils literal notranslate"><span class="pre">starting_orbit</span></code> must be a <a class="reference internal" href="../api/astro/orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a> object. The simplest way to create an
+<code class="docutils literal notranslate"><span class="pre">Orbit</span></code> is using its base <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> which takes in a position and velocity vector as well as the gravitational
+parameter of the orbit’s central body.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">starting_orbit</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="p">(</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">13047848.51</span><span class="p">,</span> <span class="o">-</span><span class="mf">4381785.841</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+    <span class="n">velocity</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3238.117862</span><span class="p">,</span> <span class="mf">3770.591649</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For all code in HohmannPy units should be SI (<span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(kg\)</span>, <span class="math notranslate nohighlight">\(s\)</span> etc;). Also, for Earth orbits the
+<code class="docutils literal notranslate"><span class="pre">grav_param</span></code> argument is technically optionally because the Earth’s gravitational parameter is a default argument.
+State-based orbit determination is simple but perhaps not very convenient, and as such HohmannPy contains a variety of
+other orbit determination methods all contained as <code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> methods of <code class="docutils literal notranslate"><span class="pre">Orbit</span></code>. For this guide, we’ll use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">from_classical()</span></code> to generate an orbit from the classical orbital elements.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">starting_orbit</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">),</span>
+</pre></div>
+</div>
+<p>Internally, this method converts the classical elements to a position and velocity reading and then returns a call to
+the base <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> of <code class="docutils literal notranslate"><span class="pre">Orbit</span></code>. This will generate an orbit identical to the one we previously used state-based
+determination for. Note that because the orbit is equatorial the argument of periapsis is technically undefined, so any
+arbitrary value will work. HohmannPy accounts for this (and other classical element singularities) and when we later
+retrieve data on this orbit the argument of latitude will have been computed.</p>
+<p>Now that we have an orbit, we can finally create our <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">starting_orbit</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+
+<span class="n">satellite</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-1&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF073A&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>All that remains before we instantiate the <code class="docutils literal notranslate"><span class="pre">Mission</span></code> is to determine the time of simulation. HohmannPy handles time
+through a the <a class="reference internal" href="../api/astro/time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a> class. This takes in the current Gregorian date and Universal Time 1 (UT1).
+UT1 is based of the rotation rate of the Earth. It is similar to Universal Coordinated Time (UTC+0) but the latter
+slowly diverges from the former over time. When this divergence grows to one second a leap second is added to (UTC+0) to
+bring it back into alignment with UT1. For more info on UT1 and how to compute it see <a class="reference external" href="https://aa.usno.navy.mil/faq/UT">Universal Time</a> by the <em>United States Navy’s Astronomical Applications Department</em>. For most purposes
+however, it is sufficient to approximate UT1 and UTC as being equivalent. <code class="docutils literal notranslate"><span class="pre">Mission</span></code> takes two time objects, one for
+the start time and one for the end time which we create below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">initial_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/01/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+<span class="n">final_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/3/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The next thing to do is to choose a <a class="reference internal" href="../api/astro/propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>. This is the algorithm which is actually used
+for orbit propagation. <code class="docutils literal notranslate"><span class="pre">Mission</span></code> defaults to <a class="reference internal" href="../api/astro/propagation/universal_variable.html#hohmannpy.astro.UniversalVariablePropagator" title="hohmannpy.astro.UniversalVariablePropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code></a> but for this
+tutorial we’ll change it to <a class="reference internal" href="../api/astro/propagation/kepler.html#hohmannpy.astro.KeplerPropagator" title="hohmannpy.astro.KeplerPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeplerPropagator</span></code></a> to show it off. This will use propagate the orbit
+using Kepler’s equation. The choice of propagator is complex and depends in part on whether or not external
+perturbations are included (which is covered later in this guide). As a rule of thumb, <code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code>
+should be the go to if there are no external perturbations, otherwise use <a class="reference internal" href="../api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a>.
+Each <code class="docutils literal notranslate"><span class="pre">Propagator</span></code> has its own set of optional parameters which are algorithm-specific. For <code class="docutils literal notranslate"><span class="pre">KeplerPropagator</span></code>, the
+only thing we’ll change is the <code class="docutils literal notranslate"><span class="pre">step_size</span></code>. This defaults to 60 <span class="math notranslate nohighlight">\(s\)</span> but this is a little overly cautious for our
+simulation so we’ll increase it to 180 <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">propagator</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">KeplerPropagator</span><span class="p">(</span><span class="n">step_size</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The final thing we need to do is add <a class="reference internal" href="../api/astro/logging/base.html#hohmannpy.astro.Logger" title="hohmannpy.astro.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a> objects. These are used to record data over the
+course of the mission. In the <code class="docutils literal notranslate"><span class="pre">Mission</span></code>’s <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, these <code class="docutils literal notranslate"><span class="pre">Logger``s</span> <span class="pre">are</span> <span class="pre">deep</span> <span class="pre">copied</span> <span class="pre">onto</span> <span class="pre">each</span> <span class="pre">passed</span>
+<span class="pre">``Satellite</span></code> and then during simulation each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code> logs its own data locally. Setting up a logger is trivial,
+simply instantiate it without any arguments. For this tutorial we’ll record the state (time, position, and velocity),
+using <a class="reference internal" href="../api/astro/logging/state.html#hohmannpy.astro.StateLogger" title="hohmannpy.astro.StateLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateLogger</span></code></a>, and classical orbital elements, using
+<a class="reference internal" href="../api/astro/logging/classical_elements.html#hohmannpy.astro.ClassicalElementsLogger" title="hohmannpy.astro.ClassicalElementsLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassicalElementsLogger</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">StateLogger</span><span class="p">()</span>
+<span class="n">logger2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">ClassicalElementsLogger</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>With all of that, we are good to create, run, and display our <code class="docutils literal notranslate"><span class="pre">Mission</span></code>. After instantiation we call the method
+<a class="reference internal" href="../api/astro/mission.html#hohmannpy.astro.Mission.simulate" title="hohmannpy.astro.Mission.simulate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">simulate()</span></code></a> to perform propagation. We can then can call another method,
+<a class="reference internal" href="../api/astro/mission.html#hohmannpy.astro.Mission.display" title="hohmannpy.astro.Mission.display"><code class="xref py py-meth docutils literal notranslate"><span class="pre">display()</span></code></a>, to launch a graphical application to display the orbit in real-time. If for
+whatever reason a static rendering is preferred, simply pass <code class="docutils literal notranslate"><span class="pre">display_flag=&quot;static&quot;</span></code> when calling <code class="docutils literal notranslate"><span class="pre">display()</span></code>. The
+full code is included below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hohmannpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">starting_orbit</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+
+<span class="n">satellite</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-1&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF073A&quot;</span>
+<span class="p">)</span>
+
+<span class="n">initial_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/01/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+<span class="n">final_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/03/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+
+<span class="n">propagator</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">KeplerPropagator</span><span class="p">(</span><span class="n">step_size</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="n">logger1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">StateLogger</span><span class="p">()</span>
+<span class="n">logger2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">ClassicalElementsLogger</span><span class="p">()</span>
+
+<span class="n">mission</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Mission</span><span class="p">(</span>
+    <span class="n">satellites</span><span class="o">=</span><span class="p">[</span><span class="n">satellite</span><span class="p">],</span>
+    <span class="n">initial_global_time</span><span class="o">=</span><span class="n">initial_global_time</span><span class="p">,</span>
+    <span class="n">final_global_time</span><span class="o">=</span><span class="n">final_global_time</span><span class="p">,</span>
+    <span class="n">propagator</span><span class="o">=</span><span class="n">propagator</span><span class="p">,</span>
+    <span class="n">loggers</span><span class="o">=</span><span class="p">[</span><span class="n">logger1</span><span class="p">,</span> <span class="n">logger2</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You should end up with a screen that looks like the following:</p>
+<img alt="Resulting orbit after running our initial simulation." class="align-center" src="../_images/figure1.png" />
+<p><code class="docutils literal notranslate"><span class="pre">display()</span></code> is really launching an image of <a class="reference internal" href="../api/ui/dy_render_engine.html#hohmannpy.ui.DynamicRenderEngine" title="hohmannpy.ui.DynamicRenderEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicRenderEngine</span></code></a> (or
+<a class="reference internal" href="../api/ui/render_engine.html#hohmannpy.ui.RenderEngine" title="hohmannpy.ui.RenderEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RenderEngine</span></code></a> if a static display is used). The camera orientation can be
+controlled using the mouse, or alternatively using a keyboard:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>A:</strong> rotate the clockwise</p></li>
+<li><p><strong>D:</strong> rotate counter-clockwise</p></li>
+<li><p><strong>W:</strong> rotate up</p></li>
+<li><p><strong>S:</strong> rotate down</p></li>
+<li><p><strong>Q:</strong> zoom out</p></li>
+<li><p><strong>E:</strong> zoom in</p></li>
+</ul>
+</div></blockquote>
+<p>If a dynamic display is used, the following speed controls are also available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>SPACE:</strong> play/pause simulation</p></li>
+<li><p><strong>1:</strong> set speed to 1 sim second / 1 real second</p></li>
+<li><p><strong>2:</strong> set speed to 10 sim seconds / 1 real second</p></li>
+<li><p><strong>3:</strong> set speed to 100 sim seconds / 1 real second</p></li>
+<li><p><strong>4:</strong> set speed to 1000 sim seconds / 1 real second</p></li>
+<li><p><strong>5:</strong> set speed to 1000 0sim seconds / 1 real second</p></li>
+</ul>
+</div></blockquote>
+<p>Finally, if we wanted to, we could log all data recorded by the loggers in a CSV file using the method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">to_csv()</span></code>.</p>
+</section>
+<section id="increasing-simulation-complexity">
+<h2>Increasing Simulation Complexity<a class="headerlink" href="#increasing-simulation-complexity" title="Link to this heading">#</a></h2>
+<p>As previously mentioned, there are a variety of ways to increase the scope or accuracy of a <code class="docutils literal notranslate"><span class="pre">Mission</span></code>. For the
+remainder of this tutorial we’ll focus on two simple ones: adding addition satellites, and adding in the influence of
+the J2-effect (a perturbation due to the Earth’s equatorial bulge). Our current satellite won’t experience the full J2
+effect because its in an equatorial orbit. To account for this, we’ll add two additional satellites: one in an inclined
+Earth orbit and the other in a parabolic escape orbit from the Earth. For the parabolic orbit, we can’t use
+<code class="docutils literal notranslate"><span class="pre">from_classical_elements()</span></code> to instantiate it because that takes the semi-major axis which is infinite for parabolic
+orbits. As such, we instead turn to <a class="reference internal" href="../api/astro/orbit.html#hohmannpy.astro.Orbit.from_classical_elements_p" title="hohmannpy.astro.Orbit.from_classical_elements_p"><code class="xref py py-class docutils literal notranslate"><span class="pre">from_classical_elements_p()</span></code></a> which uses the
+semi-latus rectum instead and as such is still defined.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">starting_orbit1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+<span class="n">starting_orbit2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">8000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">63.4</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">starting_orbit3</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements_p</span><span class="p">(</span>
+    <span class="n">sl_rectum</span><span class="o">=</span><span class="mf">13000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">330</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>As a consequence of adding a parabolic orbit, we also have to change the propagator to <code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code>
+because <code class="docutils literal notranslate"><span class="pre">KeplerPropagator</span></code> is can’t handle parabolic orbits. With that, to include the additional satellites we simply
+adjust our code as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hohmannpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">starting_orbit1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+<span class="n">starting_orbit2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">8000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">63.4</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+<span class="n">starting_orbit3</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements_p</span><span class="p">(</span>
+    <span class="n">sl_rectum</span><span class="o">=</span><span class="mf">13000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">230</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+
+<span class="n">satellite1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-1&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit1</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF073A&quot;</span>
+<span class="p">)</span>
+<span class="n">satellite2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-2&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#1E88E5&quot;</span>
+<span class="p">)</span>
+<span class="n">satellite3</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-3&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit3</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ECC71&quot;</span>
+<span class="p">)</span>
+
+<span class="n">initial_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/01/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+<span class="n">final_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/03/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+
+<span class="n">propagator</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">UniversalVariablePropagator</span><span class="p">(</span><span class="n">step_size</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="n">logger1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">StateLogger</span><span class="p">()</span>
+<span class="n">logger2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">ClassicalElementsLogger</span><span class="p">()</span>
+
+<span class="n">mission</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Mission</span><span class="p">(</span>
+    <span class="n">satellites</span><span class="o">=</span><span class="p">[</span><span class="n">satellite1</span><span class="p">,</span> <span class="n">satellite2</span><span class="p">,</span> <span class="n">satellite3</span><span class="p">],</span>
+    <span class="n">initial_global_time</span><span class="o">=</span><span class="n">initial_global_time</span><span class="p">,</span>
+    <span class="n">final_global_time</span><span class="o">=</span><span class="n">final_global_time</span><span class="p">,</span>
+    <span class="n">propagator</span><span class="o">=</span><span class="n">propagator</span><span class="p">,</span>
+    <span class="n">loggers</span><span class="o">=</span><span class="p">[</span><span class="n">logger1</span><span class="p">,</span> <span class="n">logger2</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="Resulting orbits after running our simulation with additional satellites added." class="align-center" src="../_images/figure2.png" />
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Two satellites can not have the same <code class="docutils literal notranslate"><span class="pre">name</span></code> or propagation will fail because internally the <code class="docutils literal notranslate"><span class="pre">Mission</span></code> uses this
+to differentiate between different satellite trajectories.</p>
+</div>
+<p>Finally, we’ll add the J2-effect using <a class="reference internal" href="../api/astro/perturbations/j2.html#hohmannpy.astro.J2" title="hohmannpy.astro.J2"><code class="xref py py-class docutils literal notranslate"><span class="pre">J2</span></code></a>. HohmannPy includes a variety of different
+perturbations including :class:~hohmannpy.astro.NonSphericalEarth` with is a generalization of <code class="docutils literal notranslate"><span class="pre">J2</span></code> to include other
+non-spherical mass distributions besides the equatorial bulge. To add add <code class="docutils literal notranslate"><span class="pre">J2</span></code>, we first instantiate it. Some
+perturbations have very complex <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> and even require passing additional parameters to every <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>
+object, but <code class="docutils literal notranslate"><span class="pre">J2</span></code> only requires the initial Greenwich-mean sidereal time (GMST) at simulation start. This can be
+accessed from any <code class="docutils literal notranslate"><span class="pre">Time</span></code> object via <code class="docutils literal notranslate"><span class="pre">Time.gmst</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">j2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">J2</span><span class="p">(</span><span class="n">gmst</span><span class="o">=</span><span class="n">initial_global_time</span><span class="o">.</span><span class="n">gmst</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With that, we can now pass <code class="docutils literal notranslate"><span class="pre">J2</span></code> to <code class="docutils literal notranslate"><span class="pre">Mission</span></code> using the <code class="docutils literal notranslate"><span class="pre">perturbing_forces</span></code> parameter. Also, as previously
+discussed neither <code class="docutils literal notranslate"><span class="pre">KeplerPropagator</span></code> or <code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code> allow perturbing forces so we switch to
+propagation to using <code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code>. At this point, we’re ready to run the simulation, and the full code and
+resulting rendering are included below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hohmannpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">starting_orbit1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">12000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">115</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">70</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+<span class="n">starting_orbit2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements</span><span class="p">(</span>
+    <span class="n">sm_axis</span><span class="o">=</span><span class="mf">8000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">63.4</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+<span class="n">starting_orbit3</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Orbit</span><span class="o">.</span><span class="n">from_classical_elements_p</span><span class="p">(</span>
+    <span class="n">sl_rectum</span><span class="o">=</span><span class="mf">13000e3</span><span class="p">,</span>
+    <span class="n">eccentricity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">raan</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+    <span class="n">argp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span>
+    <span class="n">inclination</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+    <span class="n">true_anomaly</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">230</span><span class="p">),</span>
+    <span class="n">grav_param</span><span class="o">=</span><span class="mf">3.986004418e14</span>
+<span class="p">)</span>
+
+<span class="n">satellite1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-1&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit1</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FF073A&quot;</span>
+<span class="p">)</span>
+<span class="n">satellite2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-2&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#1E88E5&quot;</span>
+<span class="p">)</span>
+<span class="n">satellite3</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Satellite</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hohmann-3&quot;</span><span class="p">,</span>
+    <span class="n">starting_orbit</span><span class="o">=</span><span class="n">starting_orbit3</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ECC71&quot;</span>
+<span class="p">)</span>
+
+<span class="n">initial_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/01/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+<span class="n">final_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
+    <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/03/2050&quot;</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
+<span class="p">)</span>
+
+<span class="n">propagator</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">CowellPropagator</span><span class="p">(</span><span class="n">step_size</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="n">logger1</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">StateLogger</span><span class="p">()</span>
+<span class="n">logger2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">ClassicalElementsLogger</span><span class="p">()</span>
+
+<span class="n">j2</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">J2</span><span class="p">(</span><span class="n">gmst</span><span class="o">=</span><span class="n">initial_global_time</span><span class="o">.</span><span class="n">gmst</span><span class="p">)</span>
+
+<span class="n">mission</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Mission</span><span class="p">(</span>
+    <span class="n">satellites</span><span class="o">=</span><span class="p">[</span><span class="n">satellite1</span><span class="p">,</span> <span class="n">satellite2</span><span class="p">,</span> <span class="n">satellite3</span><span class="p">],</span>
+    <span class="n">initial_global_time</span><span class="o">=</span><span class="n">initial_global_time</span><span class="p">,</span>
+    <span class="n">final_global_time</span><span class="o">=</span><span class="n">final_global_time</span><span class="p">,</span>
+    <span class="n">propagator</span><span class="o">=</span><span class="n">propagator</span><span class="p">,</span>
+    <span class="n">loggers</span><span class="o">=</span><span class="p">[</span><span class="n">logger1</span><span class="p">,</span> <span class="n">logger2</span><span class="p">],</span>
+    <span class="n">perturbing_forces</span><span class="o">=</span><span class="p">[</span><span class="n">j2</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+<span class="n">mission</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="Resulting orbits after running our simulation with additional satellites and the J2 added." class="align-center" src="../_images/figure3.png" />
+<p>Note the semi-major axis oscillation of the equatorial satellite’s orbit and longitude of the right ascending node
+precession of the inclined satellite, both hallmarks of the J2-effect.</p>
+<p>That concludes this tutorial. Hopefully you found this helpful and best of luck with your future usage of HohmannPy. If
+you have any questions feel free to open a discussion post on the <a class="reference external" href="https://github.com/hohmannpy/hohmannpy">Github</a>.</p>
+</section>
 </section>
 
 
@@ -376,6 +769,19 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-simulation">Your First Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increasing-simulation-complexity">Increasing Simulation Complexity</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
