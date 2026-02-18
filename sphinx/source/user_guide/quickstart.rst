@@ -106,7 +106,7 @@ simulation so we'll increase it to 180 :math:`s`.
     propagator = hp.astro.KeplerPropagator(step_size=180)
 
 The final thing we need to do is add :class:`~hohmannpy.astro.Logger` objects. These are used to record data over the
-course of the mission. In the ``Mission``'s ``__init__()``, these ``Logger``s are deep copied onto each passed
+course of the mission. In the ``Mission``'s ``__init__()``, these ``Logger``'s are deep copied onto each passed
 ``Satellite`` and then during simulation each ``Satellite`` logs its own data locally. Setting up a logger is trivial,
 simply instantiate it without any arguments. For this tutorial we'll record the state (time, position, and velocity),
 using :class:`~hohmannpy.astro.StateLogger`, and classical orbital elements, using
