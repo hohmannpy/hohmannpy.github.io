@@ -13,6 +13,7 @@ A set of propagators that can be used to propagate a :class:`~hohmannpy.astro.Or
    KeplerPropagator
    UniversalVariablePropagator
    CowellPropagator
+   EnckePropagator
 
 .. toctree::
    :maxdepth: 1
@@ -22,3 +23,4 @@ A set of propagators that can be used to propagate a :class:`~hohmannpy.astro.Or
    kepler
    universal_variable
    cowell
+   encke
