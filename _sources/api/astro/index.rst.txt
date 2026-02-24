@@ -8,7 +8,9 @@ Astrodynamics (:mod:`hohmannpy.astro`)
 
    conversions/index
    earth
+   groundtracks
    logging/index
+   maneuvers/index
    mission
    moon
    perturbations/index

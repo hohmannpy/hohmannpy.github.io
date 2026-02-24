@@ -40,9 +40,9 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/propagation/base';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -285,6 +285,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/state.html">astro.StateLogger</a></li>
@@ -292,6 +293,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../mission.html">astro.Mission</a></li>
@@ -312,6 +321,7 @@
 <li class="toctree-l3"><a class="reference internal" href="kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../orbit.html">astro.Orbit</a></li>
@@ -398,7 +408,7 @@
 <h1>astro.Propagator<a class="headerlink" href="#astro-propagator" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Propagator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Propagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Propagator" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Propagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Propagator" title="Link to this definition">#</a></dt>
 <dd><p>Base class for all orbit propagators.</p>
 <p>This gets passed to <a class="reference internal" href="../mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a> and used to simulate spacecrafts’ orbits via
 <a class="reference internal" href="../mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a> . <a class="reference internal" href="../mission.html#hohmannpy.astro.Mission.simulate" title="hohmannpy.astro.Mission.simulate"><code class="xref py py-class docutils literal notranslate"><span class="pre">simulate()</span></code></a>. This class’ <a class="reference internal" href="#hohmannpy.astro.Propagator.propagate" title="hohmannpy.astro.Propagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a>
@@ -413,17 +423,24 @@ store data on each orbit.</p>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>step_size</strong> (<em>float</em>) – Time interval between propagation steps. If one is not provided by the user it will be set in <code class="docutils literal notranslate"><span class="pre">propagate()</span></code> to
 60 <span class="math notranslate nohighlight">\(s\)</span>.</p></li>
-<li><p><strong>satellites</strong> (dict[str, <a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]) – Dictionary which hold the orbits to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attached to each satellite.
+<li><p><strong>timesteps</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – How many discrete timepoints to propagate at. This is based purely on the <code class="xref py py-attr docutils literal notranslate"><span class="pre">step_size</span></code> and doesn’t include
+additional timesteps injected to account for events like burns.</p></li>
+<li><p><strong>satellites</strong> (Optional[dict[str, <a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]]) – Dictionary which hold the orbits to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attached to each satellite.
 Satellites are indexed by their name.</p></li>
-<li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
+<li><p><strong>perturbing_forces</strong> (Optional[list[<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
 a non-Keplerian propagator such as <a class="reference internal" href="cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> must be used.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Propagator.log">
-<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Propagator.log" title="Link to this definition">#</a></dt>
-<dd><p>For every satellite being propagated access their stored <a class="reference internal" href="../logging/base.html#hohmannpy.astro.Logger" title="hohmannpy.astro.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a>’s and log data.</p>
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Propagator.log" title="Link to this definition">#</a></dt>
+<dd><p>For a satellite being propagated access their stored <a class="reference internal" href="../logging/base.html#hohmannpy.astro.Logger" title="hohmannpy.astro.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a>’s and log data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.spacecraft.Satellite"><em>spacecraft.Satellite</em></a>) – Spacecraft to log data for.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -547,7 +564,7 @@ added a non-Keplerian propagator such as <code class="docutils literal notransla
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

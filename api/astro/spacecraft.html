@@ -40,9 +40,9 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/spacecraft';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -285,6 +285,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/state.html">astro.StateLogger</a></li>
@@ -292,6 +293,14 @@
 <li class="toctree-l3"><a class="reference internal" href="logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="mission.html">astro.Mission</a></li>
@@ -312,6 +321,7 @@
 <li class="toctree-l3"><a class="reference internal" href="propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="orbit.html">astro.Orbit</a></li>
@@ -395,7 +405,7 @@
 <h1>astro.Satellite<a class="headerlink" href="#astro-satellite" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Satellite">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Satellite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starting_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#FF073A'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ballistic_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_reflective_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reflectivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Satellite" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Satellite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starting_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#FF073A'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ballistic_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_reflective_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reflectivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Satellite" title="Link to this definition">#</a></dt>
 <dd><p>Basic spacecraft whose motion can be simulated using <a class="reference internal" href="mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -403,6 +413,7 @@
 <li><p><strong>name</strong> (<em>str</em>) – Unique identifier of the spacecraft. Repeats are not allowed.</p></li>
 <li><p><strong>starting_orbit</strong> (<a class="reference internal" href="orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a>) – The orbit the spacecraft is in at the start of the perturbation.</p></li>
 <li><p><strong>color</strong> (<em>str</em>) – The color of the orbit and spacecraft to display in renderings.</p></li>
+<li><p><strong>burns</strong> (Optional[list[Union[<a class="reference internal" href="maneuvers/impulsive.html#hohmannpy.astro.ImpulsiveBurn" title="hohmannpy.astro.ImpulsiveBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a>, <a class="reference internal" href="maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn" title="hohmannpy.astro.ContinuousBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousBurn</span></code></a>]]]) – The set of impulsive and continuous.rst burns to schedule for this spacecraft.</p></li>
 <li><p><strong>mass</strong> (<em>float</em>) – Mass of the spacecraft in <span class="math notranslate nohighlight">\(kg\)</span>. Needed for missions where the perturbation
 <a class="reference internal" href="perturbations/solar_radiation.html#hohmannpy.astro.SolarRadiation" title="hohmannpy.astro.SolarRadiation"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolarRadiation</span></code></a> is enabled.</p></li>
 <li><p><strong>ballistic_coeff</strong> (<em>float</em>) – Dimensionless parameter proportional to the drag effects experienced by a spacecraft. Needed for missions where
@@ -432,6 +443,15 @@ the perturbation <a class="reference internal" href="perturbations/drag.html#hoh
 <li><p><strong>reflectivity</strong> (<em>float</em>) – Dimensionless parameter proportional to how much solar radiation is reflected by the <code class="docutils literal notranslate"><span class="pre">mean_reflective_area</span></code>.
 0 = transparent, 1 = full absorption, and 2 = full reflection. Needed for missions where the perturbation
 <a class="reference internal" href="perturbations/solar_radiation.html#hohmannpy.astro.SolarRadiation" title="hohmannpy.astro.SolarRadiation"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolarRadiation</span></code></a> is enabled.</p></li>
+<li><p><strong>impulsive_burns</strong> (list[<a class="reference internal" href="maneuvers/impulsive.html#hohmannpy.astro.ImpulsiveBurn" title="hohmannpy.astro.ImpulsiveBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a>]) – The set of scheduled impulsive burns for this satellite. These will end up sorted from earliest to latest based
+on their <code class="docutils literal notranslate"><span class="pre">start_time</span></code> attribute.</p></li>
+<li><p><strong>continuous_burns</strong> (list[<a class="reference internal" href="maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn" title="hohmannpy.astro.ContinuousBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousBurn</span></code></a>]) – The set of scheduled continuous.rst burns for this satellite. These will end up sorted from earliest to latest based
+on their <code class="docutils literal notranslate"><span class="pre">start_time</span></code> attribute.</p></li>
+<li><p><strong>inverted_continuous_burns</strong> (list[<a class="reference internal" href="maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn" title="hohmannpy.astro.ContinuousBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousBurn</span></code></a>]) – Same as <code class="docutils literal notranslate"><span class="pre">continuous_burns</span></code>, but this time sorted from earliest to latest based on their <code class="docutils literal notranslate"><span class="pre">end_time</span></code>
+attribute.</p></li>
+<li><p><strong>impulsive_burn_index</strong> (<em>int</em>) – Which burn from <code class="docutils literal notranslate"><span class="pre">impulsive_burns</span></code> is currently scheduled next.</p></li>
+<li><p><strong>continuous_burn_start_index</strong> (<em>int</em>) – Which burn from <code class="docutils literal notranslate"><span class="pre">continuous_burns</span></code> is currently scheduled to start next.</p></li>
+<li><p><strong>continuous_burn_end_index</strong> (<em>int</em>) – Which burn from <code class="docutils literal notranslate"><span class="pre">inverted_continuous_burns</span></code> is currently scheduled to end next.</p></li>
 </ul>
 </dd>
 </dl>
@@ -536,7 +556,7 @@ attached to this satellite can be access from the satellite using <code class="d
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>
