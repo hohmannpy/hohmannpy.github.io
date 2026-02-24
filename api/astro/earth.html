@@ -40,12 +40,12 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/earth';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="astro.logging" href="logging/index.html" />
+    <link rel="next" title="astro.Groundtrack" href="groundtracks.html" />
     <link rel="prev" title="astro.equinoctial_2_classical" href="conversions/equinoctial_2_classical.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -284,6 +284,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/state.html">astro.StateLogger</a></li>
@@ -291,6 +292,14 @@
 <li class="toctree-l3"><a class="reference internal" href="logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="mission.html">astro.Mission</a></li>
@@ -311,6 +320,7 @@
 <li class="toctree-l3"><a class="reference internal" href="propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="orbit.html">astro.Orbit</a></li>
@@ -394,7 +404,7 @@
 <h1>astro.Earth<a class="headerlink" href="#astro-earth" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Earth">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Earth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Earth" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Earth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Earth" title="Link to this definition">#</a></dt>
 <dd><p>Special “spacecraft” which represents the Earth. Alternatively, can represent the Sun orbiting the Earth if you
 invert the position vector.</p>
 <p>Used by <a class="reference internal" href="perturbations/solar_gravity.html#hohmannpy.astro.SolarGravity" title="hohmannpy.astro.SolarGravity"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolarGravity</span></code></a> for simulating solar gravity third-body perturbing effects.</p>
@@ -448,11 +458,11 @@ invert the position vector.</p>
       </div>
     </a>
     <a class="right-next"
-       href="logging/index.html"
+       href="groundtracks.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">astro.logging</p>
+        <p class="prev-next-title">astro.Groundtrack</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -525,7 +535,7 @@ invert the position vector.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

@@ -40,9 +40,9 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/quickstart';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -403,9 +403,9 @@ retrieve data on this orbit the argument of latitude will have been computed.</p
 through a the <a class="reference internal" href="../api/astro/time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a> class. This takes in the current Gregorian date and Universal Time 1 (UT1).
 UT1 is based of the rotation rate of the Earth. It is similar to Universal Coordinated Time (UTC+0) but the latter
 slowly diverges from the former over time. When this divergence grows to one second a leap second is added to (UTC+0) to
-bring it back into alignment with UT1. For more info on UT1 and how to compute it see <a class="reference external" href="https://aa.usno.navy.mil/faq/UT">Universal Time</a> by the <em>United States Navy’s Astronomical Applications Department</em>. For most purposes
-however, it is sufficient to approximate UT1 and UTC as being equivalent. <code class="docutils literal notranslate"><span class="pre">Mission</span></code> takes two time objects, one for
-the start time and one for the end time which we create below.</p>
+bring it back into alignment with UT1. For more info on UT1 and how to compute it see <a class="reference external" href="https://aa.usno.navy.mil/faq/UT">Universal Time</a> by the <em>United States Navy’s Astronomical Applications Department</em>. For most
+purposes however, it is sufficient to approximate UT1 and UTC as being equivalent. <code class="docutils literal notranslate"><span class="pre">Mission</span></code> takes two time objects,
+one forthe start time and one for the end time which we create below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">initial_global_time</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">astro</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span>
     <span class="n">date</span><span class="o">=</span><span class="s2">&quot;03/01/2050&quot;</span><span class="p">,</span>
     <span class="n">time</span><span class="o">=</span><span class="s2">&quot;00:00:00&quot;</span>
@@ -429,8 +429,8 @@ simulation so we’ll increase it to 180 <span class="math notranslate nohighlig
 </pre></div>
 </div>
 <p>The final thing we need to do is add <a class="reference internal" href="../api/astro/logging/base.html#hohmannpy.astro.Logger" title="hohmannpy.astro.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">Logger</span></code></a> objects. These are used to record data over the
-course of the mission. In the <code class="docutils literal notranslate"><span class="pre">Mission</span></code>’s <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, these <code class="docutils literal notranslate"><span class="pre">Logger``s</span> <span class="pre">are</span> <span class="pre">deep</span> <span class="pre">copied</span> <span class="pre">onto</span> <span class="pre">each</span> <span class="pre">passed</span>
-<span class="pre">``Satellite</span></code> and then during simulation each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code> logs its own data locally. Setting up a logger is trivial,
+course of the mission. In the <code class="docutils literal notranslate"><span class="pre">Mission</span></code>’s <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>, these <code class="docutils literal notranslate"><span class="pre">Logger</span></code>’s are deep copied onto each passed
+<code class="docutils literal notranslate"><span class="pre">Satellite</span></code> and then during simulation each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code> logs its own data locally. Setting up a logger is trivial,
 simply instantiate it without any arguments. For this tutorial we’ll record the state (time, position, and velocity),
 using <a class="reference internal" href="../api/astro/logging/state.html#hohmannpy.astro.StateLogger" title="hohmannpy.astro.StateLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateLogger</span></code></a>, and classical orbital elements, using
 <a class="reference internal" href="../api/astro/logging/classical_elements.html#hohmannpy.astro.ClassicalElementsLogger" title="hohmannpy.astro.ClassicalElementsLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClassicalElementsLogger</span></code></a>.</p>
@@ -516,8 +516,8 @@ controlled using the mouse, or alternatively using a keyboard:</p>
 <p>Finally, if we wanted to, we could log all data recorded by the loggers in a CSV file using the method
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">to_csv()</span></code>.</p>
 </section>
-<section id="increasing-simulation-complexity">
-<h2>Increasing Simulation Complexity<a class="headerlink" href="#increasing-simulation-complexity" title="Link to this heading">#</a></h2>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <p>As previously mentioned, there are a variety of ways to increase the scope or accuracy of a <code class="docutils literal notranslate"><span class="pre">Mission</span></code>. For the
 remainder of this tutorial we’ll focus on two simple ones: adding addition satellites, and adding in the influence of
 the J2-effect (a perturbation due to the Earth’s equatorial bulge). Our current satellite won’t experience the full J2
@@ -779,7 +779,7 @@ you have any questions feel free to open a discussion post on the <a class="refe
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-simulation">Your First Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#increasing-simulation-complexity">Increasing Simulation Complexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
   </nav></div>
 
@@ -826,7 +826,7 @@ you have any questions feel free to open a discussion post on the <a class="refe
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

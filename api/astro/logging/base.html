@@ -40,8 +40,8 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/logging/base';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -284,6 +284,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">astro.logging</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="state.html">astro.StateLogger</a></li>
@@ -291,6 +292,14 @@
 <li class="toctree-l3"><a class="reference internal" href="equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../mission.html">astro.Mission</a></li>
@@ -311,6 +320,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../orbit.html">astro.Orbit</a></li>
@@ -397,37 +407,40 @@
 <h1>astro.Logger<a class="headerlink" href="#astro-logger" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#hohmannpy.astro.Logger" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#hohmannpy.astro.Logger" title="Link to this definition">#</a></dt>
 <dd><p>A logger is used to store data regarding a <a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a> generated on each timestep by
 <a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a> . <a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator.propagate" title="hohmannpy.astro.Propagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_index</strong> (<em>int</em>) – The index corresponding to the timestep to log data at. For example, on the Nth timestep current_index = N and
+the Nth column of each array is filled out.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger.concatenate">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">concatenate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.concatenate" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">concatenate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.concatenate" title="Link to this definition">#</a></dt>
 <dd><p>Takes the M history array attributes, each of length N timesteps, concatenates them into a (N, M) array, and
 then transposes and returns it.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger.log">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.log" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_orbit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.log" title="Link to this definition">#</a></dt>
 <dd><p>Fills in the Nth column of each history array with the orbit’s current values for each data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>current_orbit</strong> (<a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a>) – The orbit which holds the data to log.</p></li>
-<li><p><strong>timestep</strong> (<em>int</em>) – How many timesteps propagation has occurred for. Used to row-index the history arrays.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>current_orbit</strong> (<a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a>) – The orbit which holds the data to log.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger.setup">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.setup" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_orbit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timesteps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.setup" title="Link to this definition">#</a></dt>
 <dd><p>Sets up a logger.</p>
 <p>All child classes must implement this method with the following steps:</p>
 <ol class="arabic simple">
-<li><p>Allocate space using <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros()</span></code> where the data is stored column-wise with N columns where N = the number of timesteps stored in the <code class="docutils literal notranslate"><span class="pre">Propagator</span></code>’s <code class="docutils literal notranslate"><span class="pre">timestep</span></code> attribute.</p></li>
+<li><p>Allocate space using <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.zeros()</span></code> where the data is stored column-wise with N + 2M columns where N = the number of timesteps stored in the <code class="docutils literal notranslate"><span class="pre">Propagator</span></code>’s <code class="docutils literal notranslate"><span class="pre">timestep</span></code> attribute and M is the number of burns scheduled for the <a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a> whose data is being logged.</p></li>
 <li><p>Fill in the 0th column of each array with the orbit’s initial values for the stored data.</p></li>
 </ol>
 <dl class="field-list simple">
@@ -435,13 +448,16 @@ then transposes and returns it.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>initial_orbit</strong> (<a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a>) – The orbit which holds the data to log.</p></li>
 <li><p><strong>timesteps</strong> (<em>int</em>) – How many timesteps to log the data for.</p></li>
+<li><p><strong>burns</strong> (<em>int</em>) – How many burns to log data for. Two points are logged for each burn. For impulsive burns this is the
+immediately before and after the impulse (two data points on the same timestep). For continuous.rst burns this
+is the start and end times of the burn. These additional points are included for precision purposes.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>Can’t call this till after the initial values of propagator-unique attributes, such as <code class="docutils literal notranslate"><span class="pre">eccentric_anomaly</span></code>
 for <a class="reference internal" href="../propagation/kepler.html#hohmannpy.astro.KeplerPropagator" title="hohmannpy.astro.KeplerPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeplerPropagator</span></code></a>, have been set. This is typically towards the start of a
-propagators’ <code class="docutils literal notranslate"><span class="pre">propagate()</span></code> method. This is why <code class="docutils literal notranslate"><span class="pre">setup()</span></code> is seperated from <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
+propagators’ <code class="docutils literal notranslate"><span class="pre">propagate()</span></code> method. This is why <code class="docutils literal notranslate"><span class="pre">setup()</span></code> is separated from <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -547,7 +563,7 @@ propagators’ <code class="docutils literal notranslate"><span class="pre">prop
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

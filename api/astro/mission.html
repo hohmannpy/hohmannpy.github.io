@@ -40,13 +40,13 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/mission';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="astro.Moon" href="moon.html" />
-    <link rel="prev" title="astro.UniversalVariableLogger" href="logging/universal_variable.html" />
+    <link rel="prev" title="astro.FunctionContinuousBurn" href="maneuvers/function_continuous.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -284,6 +284,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/state.html">astro.StateLogger</a></li>
@@ -291,6 +292,14 @@
 <li class="toctree-l3"><a class="reference internal" href="logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">astro.Mission</a></li>
@@ -311,6 +320,7 @@
 <li class="toctree-l3"><a class="reference internal" href="propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="orbit.html">astro.Orbit</a></li>
@@ -394,7 +404,7 @@
 <h1>astro.Mission<a class="headerlink" href="#astro-mission" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Mission">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loggers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loggers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission" title="Link to this definition">#</a></dt>
 <dd><p>Master class for all orbital simulations.</p>
 <p>Contains the ability to propagate the orbits of a set of <a class="reference internal" href="spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a> and then render and
 propagate the results.</p>
@@ -411,6 +421,7 @@ records, check the attributes labeled <code class="docutils literal notranslate"
 <li><p><strong>propagator</strong> (<a class="reference internal" href="propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – Propagation technique to use to simulate the orbits of each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>.</p></li>
 <li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
 a non-Keplerian propagator such as <a class="reference internal" href="propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> must be used.</p></li>
+<li><p><strong>cores</strong> (<em>int</em>) – How many cores to use propagation. If this is greater than 1 parallel computing will be enabled.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables<span class="colon">:</span></dt>
@@ -424,6 +435,7 @@ initialization, it will default to <a class="reference internal" href="propagati
 <code class="docutils literal notranslate"><span class="pre">Perturbation</span></code> in which case a <code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code> will be used.</p></li>
 <li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
 a non-Keplerian propagator such as <a class="reference internal" href="propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> must be used.</p></li>
+<li><p><strong>cores</strong> (<em>int</em>) – How many cores to use propagation. If this is greater than 1 parallel computing will be enabled.</p></li>
 </ul>
 </dd>
 </dl>
@@ -442,8 +454,15 @@ rendering will launch. Otherwise, a static rendering will be used.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.Mission.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_accuracy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.save" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="hohmannpy.astro.Mission.simulate">
+<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.simulate" title="Link to this definition">#</a></dt>
+<dd><p>Propagate the orbits of all stored <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>.</p>
+<p>This also contains all the parallel computing logic.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hohmannpy.astro.Mission.to_csv">
+<span class="sig-name descname"><span class="pre">to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_accuracy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.to_csv" title="Link to this definition">#</a></dt>
 <dd><p>Save all the data logged over the course of the mission. For each satellite, all logged data is stored as a .csv
 where each column represents a different variable and each row a timestep of propagation.</p>
 <p>This should only be called after <a class="reference internal" href="#hohmannpy.astro.Mission.simulate" title="hohmannpy.astro.Mission.simulate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">simulate()</span></code></a> is run.</p>
@@ -455,12 +474,6 @@ where each column represents a different variable and each row a timestep of pro
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.Mission.simulate">
-<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.simulate" title="Link to this definition">#</a></dt>
-<dd><p>Propagate the orbits of all stored <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -478,12 +491,12 @@ where each column represents a different variable and each row a timestep of pro
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="logging/universal_variable.html"
+       href="maneuvers/function_continuous.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">astro.UniversalVariableLogger</p>
+        <p class="prev-next-title">astro.FunctionContinuousBurn</p>
       </div>
     </a>
     <a class="right-next"
@@ -516,8 +529,8 @@ where each column represents a different variable and each row a timestep of pro
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission"><code class="docutils literal notranslate"><span class="pre">Mission</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.display"><code class="docutils literal notranslate"><span class="pre">Mission.display()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.save"><code class="docutils literal notranslate"><span class="pre">Mission.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.simulate"><code class="docutils literal notranslate"><span class="pre">Mission.simulate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.to_csv"><code class="docutils literal notranslate"><span class="pre">Mission.to_csv()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -566,7 +579,7 @@ where each column represents a different variable and each row a timestep of pro
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

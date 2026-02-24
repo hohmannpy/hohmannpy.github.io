@@ -40,8 +40,8 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/perturbations/base';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -284,6 +284,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/state.html">astro.StateLogger</a></li>
@@ -291,6 +292,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../mission.html">astro.Mission</a></li>
@@ -311,6 +320,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../orbit.html">astro.Orbit</a></li>
@@ -397,16 +407,16 @@
 <h1>astro.Perturbation<a class="headerlink" href="#astro-perturbation" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Perturbation">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Perturbation</span></span><a class="headerlink" href="#hohmannpy.astro.Perturbation" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Perturbation</span></span><a class="headerlink" href="#hohmannpy.astro.Perturbation" title="Link to this definition">#</a></dt>
 <dd><p>Base class for implementing perturbations from Keplerian two-body orbital mechanics. These are designed to be used
 in conjunction with a non-Keplerian propagator such as <a class="reference internal" href="../propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> or
-<code class="xref py py-class docutils literal notranslate"><span class="pre">EnckePropagator</span></code>.</p>
+<a class="reference internal" href="../propagation/encke.html#hohmannpy.astro.EnckePropagator" title="hohmannpy.astro.EnckePropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnckePropagator</span></code></a>.</p>
 <p>Child classes must implement <a class="reference internal" href="#hohmannpy.astro.Perturbation.evaluate" title="hohmannpy.astro.Perturbation.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a>. This is called on each timestep of propagation by
 <a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a> . <a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator.propagate" title="hohmannpy.astro.Propagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a> to return thw perturbing
 acceleration for a given orbital state.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Perturbation.evaluate">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Perturbation.evaluate" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Perturbation.evaluate" title="Link to this definition">#</a></dt>
 <dd><p>Takes in the current time and planet-centered inertial state (the position and velocity) and returns the
 perturbing acceleration.</p>
 <dl class="field-list simple">
@@ -419,6 +429,9 @@ satellite can be used in computing perturbing acceleration, such as the <code cl
 <a class="reference internal" href="drag.html#hohmannpy.astro.AtmosphericDrag" title="hohmannpy.astro.AtmosphericDrag"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtmosphericDrag</span></code></a>. However, the state of the satellite should never be accessed
 directly, only via the passed <code class="docutils literal notranslate"><span class="pre">state</span></code> parameter.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>acceleration</strong> (<em>np.ndarray</em>) – Acceleration due to this perturbation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -524,7 +537,7 @@ directly, only via the passed <code class="docutils literal notranslate"><span c
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

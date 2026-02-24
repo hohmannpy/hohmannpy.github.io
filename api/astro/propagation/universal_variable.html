@@ -40,9 +40,9 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/propagation/universal_variable';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -285,6 +285,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/state.html">astro.StateLogger</a></li>
@@ -292,6 +293,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../mission.html">astro.Mission</a></li>
@@ -312,6 +321,7 @@
 <li class="toctree-l3"><a class="reference internal" href="kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../orbit.html">astro.Orbit</a></li>
@@ -398,7 +408,7 @@
 <h1>astro.UniversalVariablePropagator<a class="headerlink" href="#astro-universalvariablepropagator" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">UniversalVariablePropagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stumpff_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stumpff_series_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg_constraint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">UniversalVariablePropagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stumpff_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stumpff_series_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fg_constraint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator" title="Link to this definition">#</a></dt>
 <dd><p>Propagates orbits using an f and g functions as well as a universal variable formulation of Kepler’s equation.</p>
 <p>Unlike with the standard form of Kepler’s equation the inclusion of the universal variable allows propagation of
 parabolic orbits in addition to elliptical and hyperbolic ones.</p>
@@ -417,6 +427,18 @@ these series converge absolutely to either trigonometric or hyper-trigonometric 
 the Stumpff series must be computed via summation. “Small” is defined here as the absolute value of the Stumpff
 parameter being under <code class="docutils literal notranslate"><span class="pre">stumpff_tol</span></code>.</p></li>
 <li><p><strong>stumpff_series_length</strong> (<em>int</em>) – When the Stumpff series are computed via summation, how many terms to include.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>solver_tol</strong> (<em>float</em>) – Error tolerance when performing root-finding to solver Kepler’s equation.</p></li>
+<li><p><strong>fg_constraint</strong> (<em>bool</em>) – Flag which indicates whether to compute the derivative of the g function (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to use a constraint to
+eliminate it (<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p></li>
+<li><p><strong>stumpff_tol</strong> (<em>float</em>) – Tolerance at which to switch to the infinite series definition of the Stumpff series.</p></li>
+<li><p><strong>stumpff_series_length</strong> (<em>int</em>) – When the Stumpff series are computed via summation, how many terms to include.</p></li>
+<li><p><strong>initial_times</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em>) – The base point times at which propagation began.</p></li>
+<li><p><strong>initial_positions</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>np.ndarray</em><em>]</em>) – The base point positions at which propagation began.</p></li>
+<li><p><strong>initial_velocities</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>np.ndarray</em><em>]</em>) – The base point velocities at which propagation began.</p></li>
 </ul>
 </dd>
 </dl>
@@ -456,6 +478,20 @@ Satellites are indexed by their name.</p></li>
 <li><p><strong>runtime</strong> (<em>float</em>) – How many <span class="math notranslate nohighlight">\(s\)</span> to run the propagation for.</p></li>
 <li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are
 added a non-Keplerian propagator such as <code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code> must be used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator.step" title="Link to this definition">#</a></dt>
+<dd><p>One step in the propagation loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the satellite being propagated.</p></li>
+<li><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>) – Satellite being propagated. Holds the orbit to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -536,6 +572,7 @@ trigonometric.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.kepler_equation"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.kepler_equation()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.propagate"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.propagate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.step"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.step()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.stumpff_funcs"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.stumpff_funcs()</span></code></a></li>
 </ul>
 </li>
@@ -585,7 +622,7 @@ trigonometric.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

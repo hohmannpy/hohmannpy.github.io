@@ -40,9 +40,9 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=401b779c"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/astro/perturbations/solar_radiation';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -285,6 +285,7 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../earth.html">astro.Earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../logging/index.html">astro.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../logging/base.html">astro.Logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/state.html">astro.StateLogger</a></li>
@@ -292,6 +293,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../logging/equinoctial_elements.html">astro.EquinoctialElementsLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/eccentric_anomaly.html">astro.EccentricAnomalyLogger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging/universal_variable.html">astro.UniversalVariableLogger</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../maneuvers/index.html">astro.maneuvers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/impulsive.html">astro.ImpulsiveBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/continuous.html">astro.ContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/const_continuous.html">astro.ConstantContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/lookup_continuous.html">astro.LookupContinuousBurn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maneuvers/function_continuous.html">astro.FunctionContinuousBurn</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../mission.html">astro.Mission</a></li>
@@ -312,6 +321,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../propagation/kepler.html">astro.KeplerPropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/universal_variable.html">astro.UniversalVariablePropagator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../propagation/cowell.html">astro.CowellPropagator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../propagation/encke.html">astro.EnckePropagator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../orbit.html">astro.Orbit</a></li>
@@ -396,23 +406,16 @@
                   
   <section id="astro-solarradiation">
 <h1>astro.SolarRadiation<a class="headerlink" href="#astro-solarradiation" title="Link to this heading">#</a></h1>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>This model is (relatively) crude. Look over the assumptions listed in the Notes section before deciding to
-implement it in a simulation.</p>
-</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.SolarRadiation">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">SolarRadiation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">irradiance_scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.SolarRadiation" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">SolarRadiation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">irradiance_scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shadowing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.SolarRadiation" title="Link to this definition">#</a></dt>
 <dd><p>Perturbation caused by solar radiation from the Sun.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation begins. Used to compute the time (in days) since the Earth’s
-last aphelion passage for the solar irradiance model.</p></li>
-<li><p><strong>final_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation ends.</p></li>
 <li><p><strong>irradiance_scale_factor</strong> (<em>float</em>) – Constant to scale the solar irradiance by at all timesteps. Useful for representing heightened solar activity
 such as during solar flares.</p></li>
+<li><p><strong>shadowing</strong> (<em>bool</em>) – Flag which determines whether the Earth’s shadow should be modeled.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables<span class="colon">:</span></dt>
@@ -423,6 +426,7 @@ such as during solar flares.</p></li>
 orbit at that time.</p></li>
 <li><p><strong>initial_jd_since_aphelion</strong> (<em>float</em>) – Number of Julian days passed since aphelion, taken to be on the most recent July 4th before
 <code class="docutils literal notranslate"><span class="pre">initial_global_time</span></code>.</p></li>
+<li><p><strong>shadowing</strong> (<em>bool</em>) – Flag which determines whether the Earth’s shadow should be modeled.</p></li>
 </ul>
 </dd>
 </dl>
@@ -434,7 +438,7 @@ orbit at that time.</p></li>
 <li><p>The 1-2 plane of the Earth-centered-inertial (ECI) basis is also assumed to be inclined at constant 23.5 <span class="math notranslate nohighlight">\(deg\)</span> from the ecliptic plane.</p></li>
 <li><p>The reflective area facing the Sun and reflectivity of said area is also assumed to be constant and attitude-independent.</p></li>
 <li><p>As a consequence of 4, the perturbing acceleration is said to act along a line from the Sun to the satellite.</p></li>
-<li><p>Shade due to the Earth is not accounted for which will introduce inaccuracies for LEO orbits.</p></li>
+<li><p>The Earth’s shadow (if enabled) is assumed to be a cylinder of equivalent radius to the Earth along the Earth-Sun line on the shadowed face of the Earth. Solar radiation is fully disabled whenever the satellite lies in this cylinder and otherwise is assumed to act at full strength.</p></li>
 </ol>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="id2" role="doc-footnote">
@@ -458,6 +462,24 @@ accessed.</p></li>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>acceleration</strong> (<em>np.ndarray</em>) – Current translational acceleration in ECI coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hohmannpy.astro.SolarRadiation.finalize__init__">
+<span class="sig-name descname"><span class="pre">finalize__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.SolarRadiation.finalize__init__" title="Link to this definition">#</a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">np.BSpline</span></code> for the Earth’s orbit and determine the current number of Julian days since the last
+aphelion passage.</p>
+<p>Both of these attributes are needed by <a class="reference internal" href="#hohmannpy.astro.SolarRadiation.evaluate" title="hohmannpy.astro.SolarRadiation.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a> but can’t be computed in the base <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>. This
+is called during <a class="reference internal" href="../mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a>’s instantiation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation begins. Used to compute the time (in days) since the Earth’s
+last aphelion passage for the solar irradiance model.</p></li>
+<li><p><strong>final_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation ends.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -515,6 +537,7 @@ accessed.</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation"><code class="docutils literal notranslate"><span class="pre">SolarRadiation</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation.evaluate"><code class="docutils literal notranslate"><span class="pre">SolarRadiation.evaluate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation.finalize__init__"><code class="docutils literal notranslate"><span class="pre">SolarRadiation.finalize__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -563,7 +586,7 @@ accessed.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

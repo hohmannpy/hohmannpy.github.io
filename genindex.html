@@ -39,8 +39,8 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=401b779c"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -300,6 +300,7 @@
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -346,9 +347,19 @@
 </li>
       <li><a href="api/astro/earth.html#hohmannpy.astro.Earth.compute_initial_true_anomaly">compute_initial_true_anomaly() (hohmannpy.astro.Earth method)</a>
 </li>
+      <li><a href="api/astro/maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn.compute_sat_2_inertial_dcm">compute_sat_2_inertial_dcm() (hohmannpy.astro.ContinuousBurn method)</a>
+
+      <ul>
+        <li><a href="api/astro/maneuvers/impulsive.html#hohmannpy.astro.ImpulsiveBurn.compute_sat_2_inertial_dcm">(hohmannpy.astro.ImpulsiveBurn method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/logging/base.html#hohmannpy.astro.Logger.concatenate">concatenate() (hohmannpy.astro.Logger method)</a>
+</li>
+      <li><a href="api/astro/maneuvers/const_continuous.html#hohmannpy.astro.ConstantContinuousBurn">ConstantContinuousBurn (class in hohmannpy.astro)</a>
+</li>
+      <li><a href="api/astro/maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn">ContinuousBurn (class in hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator">CowellPropagator (class in hohmannpy.astro)</a>
 </li>
@@ -384,20 +395,34 @@
 </li>
       <li><a href="api/astro/logging/eccentric_anomaly.html#hohmannpy.astro.EccentricAnomalyLogger">EccentricAnomalyLogger (class in hohmannpy.astro)</a>
 </li>
-      <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator.eom">eom() (hohmannpy.astro.CowellPropagator method)</a>
+      <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator">EnckePropagator (class in hohmannpy.astro)</a>
 </li>
+      <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator.eom">eom() (hohmannpy.astro.CowellPropagator method)</a>
+
+      <ul>
+        <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator.eom">(hohmannpy.astro.EnckePropagator method)</a>
+</li>
+      </ul></li>
       <li><a href="api/astro/conversions/equinoctial_2_classical.html#hohmannpy.astro.equinoctial_2_classical">equinoctial_2_classical() (in module hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/conversions/equinoctial_2_state.html#hohmannpy.astro.equinoctial_2_state">equinoctial_2_state() (in module hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/logging/equinoctial_elements.html#hohmannpy.astro.EquinoctialElementsLogger">EquinoctialElementsLogger (class in hohmannpy.astro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/perturbations/drag.html#hohmannpy.astro.AtmosphericDrag.evaluate">evaluate() (hohmannpy.astro.AtmosphericDrag method)</a>
 
       <ul>
+        <li><a href="api/astro/maneuvers/const_continuous.html#hohmannpy.astro.ConstantContinuousBurn.evaluate">(hohmannpy.astro.ConstantContinuousBurn method)</a>
+</li>
+        <li><a href="api/astro/maneuvers/continuous.html#hohmannpy.astro.ContinuousBurn.evaluate">(hohmannpy.astro.ContinuousBurn method)</a>
+</li>
+        <li><a href="api/astro/maneuvers/function_continuous.html#hohmannpy.astro.FunctionContinuousBurn.evaluate">(hohmannpy.astro.FunctionContinuousBurn method)</a>
+</li>
+        <li><a href="api/astro/maneuvers/impulsive.html#hohmannpy.astro.ImpulsiveBurn.evaluate">(hohmannpy.astro.ImpulsiveBurn method)</a>
+</li>
         <li><a href="api/astro/perturbations/j2.html#hohmannpy.astro.J2.evaluate">(hohmannpy.astro.J2 method)</a>
+</li>
+        <li><a href="api/astro/maneuvers/lookup_continuous.html#hohmannpy.astro.LookupContinuousBurn.evaluate">(hohmannpy.astro.LookupContinuousBurn method)</a>
 </li>
         <li><a href="api/astro/perturbations/nonspherical.html#hohmannpy.astro.NonSphericalEarth.evaluate">(hohmannpy.astro.NonSphericalEarth method)</a>
 </li>
@@ -408,6 +433,8 @@
         <li><a href="api/astro/perturbations/third_body_gravity.html#hohmannpy.astro.ThirdBodyGravity.evaluate">(hohmannpy.astro.ThirdBodyGravity method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/ui/render_engine.html#hohmannpy.ui.RenderEngine.event_handler">event_handler() (hohmannpy.ui.RenderEngine method)</a>
 </li>
   </ul></td>
@@ -416,19 +443,31 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/astro/perturbations/nonspherical.html#hohmannpy.astro.NonSphericalEarth.finalize__init__">finalize__init__() (hohmannpy.astro.NonSphericalEarth method)</a>
+
+      <ul>
+        <li><a href="api/astro/perturbations/solar_gravity.html#hohmannpy.astro.SolarGravity.finalize__init__">(hohmannpy.astro.SolarGravity method)</a>
+</li>
+        <li><a href="api/astro/perturbations/solar_radiation.html#hohmannpy.astro.SolarRadiation.finalize__init__">(hohmannpy.astro.SolarRadiation method)</a>
+</li>
+        <li><a href="api/astro/perturbations/third_body_gravity.html#hohmannpy.astro.ThirdBodyGravity.finalize__init__">(hohmannpy.astro.ThirdBodyGravity method)</a>
+</li>
+      </ul></li>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_classical_elements">from_classical_elements() (hohmannpy.astro.Orbit class method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_classical_elements_p">from_classical_elements_p() (hohmannpy.astro.Orbit class method)</a>
 </li>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_equinoctial_elements">from_equinoctial_elements() (hohmannpy.astro.Orbit class method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_gibbs">from_gibbs() (hohmannpy.astro.Orbit class method)</a>
 </li>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_lambert">from_lambert() (hohmannpy.astro.Orbit class method)</a>
 </li>
       <li><a href="api/astro/orbit.html#hohmannpy.astro.Orbit.from_state">from_state() (hohmannpy.astro.Orbit class method)</a>
+</li>
+      <li><a href="api/astro/maneuvers/function_continuous.html#hohmannpy.astro.FunctionContinuousBurn">FunctionContinuousBurn (class in hohmannpy.astro)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -441,6 +480,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/time.html#hohmannpy.astro.Time.gmst">gmst (hohmannpy.astro.Time property)</a>
+</li>
+      <li><a href="api/astro/groundtracks.html#hohmannpy.astro.Groundtrack">Groundtrack (class in hohmannpy.astro)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -471,6 +512,14 @@
         <li><a href="api/ui/index.html#module-hohmannpy.ui">module</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/astro/maneuvers/impulsive.html#hohmannpy.astro.ImpulsiveBurn">ImpulsiveBurn (class in hohmannpy.astro)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -514,6 +563,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/logging/base.html#hohmannpy.astro.Logger">Logger (class in hohmannpy.astro)</a>
+</li>
+      <li><a href="api/astro/maneuvers/lookup_continuous.html#hohmannpy.astro.LookupContinuousBurn">LookupContinuousBurn (class in hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/perturbations/lunar_gravity.html#hohmannpy.astro.LunarGravity">LunarGravity (class in hohmannpy.astro)</a>
 </li>
@@ -573,6 +624,8 @@
       <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator.propagate">propagate() (hohmannpy.astro.CowellPropagator method)</a>
 
       <ul>
+        <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator.propagate">(hohmannpy.astro.EnckePropagator method)</a>
+</li>
         <li><a href="api/astro/propagation/kepler.html#hohmannpy.astro.KeplerPropagator.propagate">(hohmannpy.astro.KeplerPropagator method)</a>
 </li>
         <li><a href="api/astro/propagation/base.html#hohmannpy.astro.Propagator.propagate">(hohmannpy.astro.Propagator method)</a>
@@ -590,6 +643,8 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator.reference_step">reference_step() (hohmannpy.astro.EnckePropagator method)</a>
+</li>
       <li><a href="api/ui/dy_render_engine.html#hohmannpy.ui.DynamicRenderEngine.render">render() (hohmannpy.ui.DynamicRenderEngine method)</a>
 
       <ul>
@@ -601,7 +656,11 @@
       <li><a href="api/ui/render_engine.html#hohmannpy.ui.RenderEngine">RenderEngine (class in hohmannpy.ui)</a>
 </li>
       <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator.rk4">rk4() (hohmannpy.astro.CowellPropagator method)</a>
+
+      <ul>
+        <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator.rk4">(hohmannpy.astro.EnckePropagator method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -610,24 +669,32 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/spacecraft.html#hohmannpy.astro.Satellite">Satellite (class in hohmannpy.astro)</a>
 </li>
-      <li><a href="api/astro/mission.html#hohmannpy.astro.Mission.save">save() (hohmannpy.astro.Mission method)</a>
-</li>
       <li><a href="api/astro/logging/base.html#hohmannpy.astro.Logger.setup">setup() (hohmannpy.astro.Logger method)</a>
 </li>
       <li><a href="api/astro/mission.html#hohmannpy.astro.Mission.simulate">simulate() (hohmannpy.astro.Mission method)</a>
 </li>
       <li><a href="api/astro/perturbations/solar_gravity.html#hohmannpy.astro.SolarGravity">SolarGravity (class in hohmannpy.astro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/perturbations/solar_radiation.html#hohmannpy.astro.SolarRadiation">SolarRadiation (class in hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/conversions/state_2_classical.html#hohmannpy.astro.state_2_classical">state_2_classical() (in module hohmannpy.astro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/conversions/state_2_classical_p.html#hohmannpy.astro.state_2_classical_p">state_2_classical_p() (in module hohmannpy.astro)</a>
 </li>
       <li><a href="api/astro/logging/state.html#hohmannpy.astro.StateLogger">StateLogger (class in hohmannpy.astro)</a>
 </li>
+      <li><a href="api/astro/propagation/cowell.html#hohmannpy.astro.CowellPropagator.step">step() (hohmannpy.astro.CowellPropagator method)</a>
+
+      <ul>
+        <li><a href="api/astro/propagation/encke.html#hohmannpy.astro.EnckePropagator.step">(hohmannpy.astro.EnckePropagator method)</a>
+</li>
+        <li><a href="api/astro/propagation/kepler.html#hohmannpy.astro.KeplerPropagator.step">(hohmannpy.astro.KeplerPropagator method)</a>
+</li>
+        <li><a href="api/astro/propagation/universal_variable.html#hohmannpy.astro.UniversalVariablePropagator.step">(hohmannpy.astro.UniversalVariablePropagator method)</a>
+</li>
+      </ul></li>
       <li><a href="api/astro/propagation/universal_variable.html#hohmannpy.astro.UniversalVariablePropagator.stumpff_funcs">stumpff_funcs() (hohmannpy.astro.UniversalVariablePropagator method)</a>
 </li>
   </ul></td>
@@ -638,11 +705,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/perturbations/third_body_gravity.html#hohmannpy.astro.ThirdBodyGravity">ThirdBodyGravity (class in hohmannpy.astro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/astro/time.html#hohmannpy.astro.Time">Time (class in hohmannpy.astro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/ui/dy_render_engine.html#hohmannpy.ui.DynamicRenderEngine.time_event_handler">time_event_handler() (hohmannpy.ui.DynamicRenderEngine method)</a>
+</li>
+      <li><a href="api/astro/mission.html#hohmannpy.astro.Mission.to_csv">to_csv() (hohmannpy.astro.Mission method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -713,7 +782,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>
