@@ -6,6 +6,6 @@ HohmannPy is an open-source Python library built for rapid spacecraft mission de
 .. toctree::
    :maxdepth: 3
 
-   installation
+   installation/index
    user_guide/index
    api/index
