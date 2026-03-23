@@ -1,4 +1,4 @@
-Installation
+Installation Guide
 =======================
 To download either run from the following code from the command line:
 
