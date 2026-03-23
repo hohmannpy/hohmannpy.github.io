@@ -1,2 +1,0 @@
-Increasing Simulation Fidelity
-==============================

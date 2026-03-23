@@ -144,13 +144,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -234,13 +227,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -328,15 +314,11 @@
 <li class="toctree-l2"><a class="reference internal" href="time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -404,7 +386,7 @@
 <h1>astro.Mission<a class="headerlink" href="#astro-mission" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.Mission">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loggers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Mission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loggers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission" title="Link to this definition">#</a></dt>
 <dd><p>Master class for all orbital simulations.</p>
 <p>Contains the ability to propagate the orbits of a set of <a class="reference internal" href="spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a> and then render and
 propagate the results.</p>
@@ -421,34 +403,31 @@ records, check the attributes labeled <code class="docutils literal notranslate"
 <li><p><strong>propagator</strong> (<a class="reference internal" href="propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – Propagation technique to use to simulate the orbits of each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>.</p></li>
 <li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
 a non-Keplerian propagator such as <a class="reference internal" href="propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> must be used.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print information about propagation.</p></li>
 <li><p><strong>cores</strong> (<em>int</em>) – How many cores to use propagation. If this is greater than 1 parallel computing will be enabled.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>satellites</strong> (dict[str, <a class="reference internal" href="spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]) – Dictionary of satellites created using the <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter of each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code> as the key and the object
-itself as the value.</p></li>
-<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a>) – The Gregorian date and UT1 time to start the mission at.</p></li>
-<li><p><strong>final_global_time</strong> (<a class="reference internal" href="time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a>) – The Gregorian date and UT1 time to end the mission at.</p></li>
-<li><p><strong>propagator</strong> (<a class="reference internal" href="propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – Propagation technique to use to simulate the orbits of each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code>. If none was passed during
-initialization, it will default to <a class="reference internal" href="propagation/universal_variable.html#hohmannpy.astro.UniversalVariablePropagator" title="hohmannpy.astro.UniversalVariablePropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code></a> unless any
-<code class="docutils literal notranslate"><span class="pre">Perturbation</span></code> in which case a <code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code> will be used.</p></li>
-<li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are added
-a non-Keplerian propagator such as <a class="reference internal" href="propagation/cowell.html#hohmannpy.astro.CowellPropagator" title="hohmannpy.astro.CowellPropagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a> must be used.</p></li>
-<li><p><strong>cores</strong> (<em>int</em>) – How many cores to use propagation. If this is greater than 1 parallel computing will be enabled.</p></li>
-</ul>
+<dd class="field-even"><p><strong>satellites</strong> (dict[str, <a class="reference internal" href="spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]) – Dictionary of satellites created using the <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter of each <code class="docutils literal notranslate"><span class="pre">Satellite</span></code> as the key and the object
+itself as the value. All data post-propagation regarding each satellite is stored here.</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Mission.display">
-<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dynamic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.display" title="Link to this definition">#</a></dt>
-<dd><p>Display the orbits of all satellites using <a class="reference internal" href="../ui/render_engine.html#hohmannpy.ui.RenderEngine" title="hohmannpy.ui.RenderEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">RenderEngine</span></code></a> or
-<a class="reference internal" href="../ui/dy_render_engine.html#hohmannpy.ui.DynamicRenderEngine" title="hohmannpy.ui.DynamicRenderEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicRenderEngine</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.display" title="Link to this definition">#</a></dt>
+<dd><p>Display the orbits of all satellites using a Qt application.</p>
 <p>This should only be called after <code class="docutils literal notranslate"><span class="pre">simulate()</span></code> is run.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>display_flag</strong> (<em>str</em>) – Flag which indicates what type of rendering to use for the mission. If set to “dynamic” a real-time
-rendering will launch. Otherwise, a static rendering will be used.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hohmannpy.astro.Mission.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Mission.save" title="Link to this definition">#</a></dt>
+<dd><p>Pickle the <code class="docutils literal notranslate"><span class="pre">Mission</span></code> so that it may be loaded later.</p>
+<blockquote>
+<div><p>Parameters</p>
+</div></blockquote>
+<dl class="simple">
+<dt>target_directory<span class="classifier">str</span></dt><dd><p>The folder path to store the pickled <code class="docutils literal notranslate"><span class="pre">Mission</span></code> in.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -529,6 +508,7 @@ where each column represents a different variable and each row a timestep of pro
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission"><code class="docutils literal notranslate"><span class="pre">Mission</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.display"><code class="docutils literal notranslate"><span class="pre">Mission.display()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.save"><code class="docutils literal notranslate"><span class="pre">Mission.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.simulate"><code class="docutils literal notranslate"><span class="pre">Mission.simulate()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Mission.to_csv"><code class="docutils literal notranslate"><span class="pre">Mission.to_csv()</span></code></a></li>
 </ul>

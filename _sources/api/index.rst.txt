@@ -6,4 +6,4 @@ API Reference
 
    astro/index
    dynamics/index
-   ui/index
+   viewer/index

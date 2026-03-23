@@ -144,13 +144,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -234,13 +227,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -328,15 +314,11 @@
 <li class="toctree-l2"><a class="reference internal" href="time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -412,28 +394,11 @@ invert the position vector.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>initial_global_time</strong> (<a class="reference internal" href="time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a>) – Gregorian date and UT1 time at which simulation begins. This is used to locate the Earth via
-<a class="reference internal" href="#hohmannpy.astro.Earth.compute_initial_true_anomaly" title="hohmannpy.astro.Earth.compute_initial_true_anomaly"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_initial_true_anomaly()</span></code></a>.</p></li>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_initial_true_anomaly()</span></code>.</p></li>
 <li><p><strong>solver_tol</strong> (<em>float</em>) – Error tolerance when performing root-finding to solver Kepler’s equation in <code class="docutils literal notranslate"><span class="pre">compute_initial_true_anomaly()</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.Earth.compute_initial_true_anomaly">
-<span class="sig-name descname"><span class="pre">compute_initial_true_anomaly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Earth.compute_initial_true_anomaly" title="Link to this definition">#</a></dt>
-<dd><p>Calculates the true anomaly of the Earth at the initial date.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="time.html#hohmannpy.astro.Time" title="hohmannpy.astro.Time"><code class="xref py py-class docutils literal notranslate"><span class="pre">Time</span></code></a>) – Gregorian date and UT1 time at which the Earth is initially located.</p></li>
-<li><p><strong>solver_tol</strong> (<em>float</em>) – Error tolerance to use when solving Kepler’s equation.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>initial_true_anomaly</strong> (<em>float</em>) – True anomaly of the earth corresponding to <code class="docutils literal notranslate"><span class="pre">initial_global_time</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -485,10 +450,7 @@ invert the position vector.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Earth"><code class="docutils literal notranslate"><span class="pre">Earth</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Earth.compute_initial_true_anomaly"><code class="docutils literal notranslate"><span class="pre">Earth.compute_initial_true_anomaly()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.Earth"><code class="docutils literal notranslate"><span class="pre">Earth</span></code></a></li>
 </ul>
   </nav></div>
 

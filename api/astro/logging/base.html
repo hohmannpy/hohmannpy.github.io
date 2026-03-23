@@ -144,13 +144,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -234,13 +227,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -328,15 +314,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -409,13 +391,7 @@
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><a class="headerlink" href="#hohmannpy.astro.Logger" title="Link to this definition">#</a></dt>
 <dd><p>A logger is used to store data regarding a <a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a> generated on each timestep by
-<a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a> . <a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator.propagate" title="hohmannpy.astro.Propagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>current_index</strong> (<em>int</em>) – The index corresponding to the timestep to log data at. For example, on the Nth timestep current_index = N and
-the Nth column of each array is filled out.</p>
-</dd>
-</dl>
+<a class="reference internal" href="../propagation/base.html#hohmannpy.astro.Propagator" title="hohmannpy.astro.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a> . <code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger.concatenate">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">concatenate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.concatenate" title="Link to this definition">#</a></dt>
@@ -426,7 +402,7 @@ then transposes and returns it.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.Logger.log">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_orbit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.Logger.log" title="Link to this definition">#</a></dt>
-<dd><p>Fills in the Nth column of each history array with the orbit’s current values for each data.</p>
+<dd><p>Fills in the next empty column of each history array with the orbit’s current values for each data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>current_orbit</strong> (<a class="reference internal" href="../orbit.html#hohmannpy.astro.Orbit" title="hohmannpy.astro.Orbit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orbit</span></code></a>) – The orbit which holds the data to log.</p>

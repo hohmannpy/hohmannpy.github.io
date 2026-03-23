@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -425,16 +407,6 @@
 maximum order summed to when computing the acceleration terms to 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>degree</strong> (<em>int</em>) – Maximum degree of harmonics to include.</p></li>
-<li><p><strong>initial_gmst</strong> (<em>float</em>) – Initial angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span> when propagation began.</p></li>
-<li><p><strong>zonal</strong> (<em>bool</em>) – Disable sectoral and tesseral harmonics to only look at zonal ones (such as J2). Does this by capping the
-maximum order summed to when computing the acceleration terms to 0.</p></li>
-<li><p><strong>c_coeffs</strong> (<em>np.ndarray</em>) – Cosine-like Stokes coefficients (unnormalized) from EGM84.</p></li>
-<li><p><strong>s_coeffs</strong> (<em>np.ndarray</em>) – Sine-like Stokes coefficients (unnormalized) from EGM84.</p></li>
-</ul>
-</dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>The following assumptions are made for this implementation:</p>
@@ -443,28 +415,6 @@ maximum order summed to when computing the acceleration terms to 0.</p></li>
 <li><p>The first-order zonal harmonic is not needed since point-mass gravity is implemented by the propagator.</p></li>
 <li><p>The GMST of the Earth is initially accurately computed wrt. the Vernal equinox (ignoring nutation) and is then said to linearly rotate at the Earth’s mean rotation rate without precession.</p></li>
 </ol>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.NonSphericalEarth.compute_colat_and_long">
-<span class="sig-name descname"><span class="pre">compute_colat_and_long</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.NonSphericalEarth.compute_colat_and_long" title="Link to this definition">#</a></dt>
-<dd><p>Computes the colatitude and longitude of the satellite wrt. the Greenwich meridian from the ECI position and
-time.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<em>float</em>) – Current time in seconds since propagation began.</p></li>
-<li><p><strong>position</strong> (<em>np.ndarray</em>) – Current ECI position.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>colatitude</strong> (<em>float</em>) – Angle between the Earth-centered Earth-fixed (ECEF) 3-axis and position vector.</p></li>
-<li><p><strong>longitude</strong> (<em>float</em>) – Angle between the ECEF 1-axis and the projection of the position vector in to the 1-2 ECEF plane.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.NonSphericalEarth.evaluate">
 <span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.NonSphericalEarth.evaluate" title="Link to this definition">#</a></dt>
@@ -479,19 +429,6 @@ time.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>acceleration</strong> (<em>np.ndarray</em>) – Current translational acceleration in ECI coordinates.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.NonSphericalEarth.finalize__init__">
-<span class="sig-name descname"><span class="pre">finalize__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_gmst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.NonSphericalEarth.finalize__init__" title="Link to this definition">#</a></dt>
-<dd><p>Record the initial GMST of the Earth which is used to correctly orient it for geopotential modeling.</p>
-<p>This is needed by <a class="reference internal" href="#hohmannpy.astro.NonSphericalEarth.evaluate" title="hohmannpy.astro.NonSphericalEarth.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a> but can’t be passed to the base <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>. This is called during
-<a class="reference internal" href="../mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a>’s instantiation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>initial_gmst</strong> (<em>float</em>) – Initial angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -548,9 +485,7 @@ time.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.NonSphericalEarth"><code class="docutils literal notranslate"><span class="pre">NonSphericalEarth</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.NonSphericalEarth.compute_colat_and_long"><code class="docutils literal notranslate"><span class="pre">NonSphericalEarth.compute_colat_and_long()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.NonSphericalEarth.evaluate"><code class="docutils literal notranslate"><span class="pre">NonSphericalEarth.evaluate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.NonSphericalEarth.finalize__init__"><code class="docutils literal notranslate"><span class="pre">NonSphericalEarth.finalize__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -5,4 +5,6 @@ User Guide
    :maxdepth: 2
 
    quickstart
-   increasing_fidelity
+   propagator
+   perturbations
+   parallel

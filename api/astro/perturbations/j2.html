@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -408,16 +390,13 @@
 <h1>astro.J2<a class="headerlink" href="#astro-j2" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.J2">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">J2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gmst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.J2" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">J2</span></span><a class="headerlink" href="#hohmannpy.astro.J2" title="Link to this definition">#</a></dt>
 <dd><p>Perturbation caused by Earth’s equatorial bulge, known as the J2 effect.</p>
 <p>This is a simplified version of <code class="xref py py-class docutils literal notranslate"><span class="pre">NonSphericalEarth</span></code> intended for us in
 modeling purely the J2 effect. The J2-acceleration is computed explicitly using general perturbation theory.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>gmst</strong> (<em>float</em>) – Current angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span>.</p>
-</dd>
-<dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>initial_gmst</strong> (<em>float</em>) – Initial angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span> when propagation began.</p>
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>_initial_gmst</strong> (<em>float</em>) – Initial angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span> when propagation began.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

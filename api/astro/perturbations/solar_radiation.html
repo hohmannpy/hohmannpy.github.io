@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -419,15 +401,8 @@ such as during solar flares.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>irradiance_scale_factor</strong> (<em>float</em>) – Constant to scale the solar irradiance by at all timesteps. Useful for representing heightened solar activity
-such as during solar flares.</p></li>
-<li><p><strong>earth_orbit_spline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.BSpline</span></code>) – Linear spline of the Earth’s trajectory. Calling it via <code class="docutils literal notranslate"><span class="pre">earth_orbit_spline(time)</span></code> returns the interpolated
-orbit at that time.</p></li>
-<li><p><strong>initial_jd_since_aphelion</strong> (<em>float</em>) – Number of Julian days passed since aphelion, taken to be on the most recent July 4th before
-<code class="docutils literal notranslate"><span class="pre">initial_global_time</span></code>.</p></li>
-<li><p><strong>shadowing</strong> (<em>bool</em>) – Flag which determines whether the Earth’s shadow should be modeled.</p></li>
-</ul>
+<dd class="field-even"><p><strong>earth_orbit_spline</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.BSpline</span></code>) – Linear spline of the Earth’s trajectory. Calling it via <code class="docutils literal notranslate"><span class="pre">earth_orbit_spline(time)</span></code> returns the interpolated
+orbit at that time.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -462,24 +437,6 @@ accessed.</p></li>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>acceleration</strong> (<em>np.ndarray</em>) – Current translational acceleration in ECI coordinates.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.SolarRadiation.finalize__init__">
-<span class="sig-name descname"><span class="pre">finalize__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.SolarRadiation.finalize__init__" title="Link to this definition">#</a></dt>
-<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">np.BSpline</span></code> for the Earth’s orbit and determine the current number of Julian days since the last
-aphelion passage.</p>
-<p>Both of these attributes are needed by <a class="reference internal" href="#hohmannpy.astro.SolarRadiation.evaluate" title="hohmannpy.astro.SolarRadiation.evaluate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate()</span></code></a> but can’t be computed in the base <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>. This
-is called during <a class="reference internal" href="../mission.html#hohmannpy.astro.Mission" title="hohmannpy.astro.Mission"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mission</span></code></a>’s instantiation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation begins. Used to compute the time (in days) since the Earth’s
-last aphelion passage for the solar irradiance model.</p></li>
-<li><p><strong>final_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation ends.</p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -537,7 +494,6 @@ last aphelion passage for the solar irradiance model.</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation"><code class="docutils literal notranslate"><span class="pre">SolarRadiation</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation.evaluate"><code class="docutils literal notranslate"><span class="pre">SolarRadiation.evaluate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarRadiation.finalize__init__"><code class="docutils literal notranslate"><span class="pre">SolarRadiation.finalize__init__()</span></code></a></li>
 </ul>
 </li>
 </ul>

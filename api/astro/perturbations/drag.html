@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -413,7 +395,7 @@
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="hohmannpy.astro.AtmosphericDrag">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">AtmosphericDrag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_gmst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solar_activity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'moderate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.AtmosphericDrag" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">hohmannpy.astro.</span></span><span class="sig-name descname"><span class="pre">AtmosphericDrag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solar_activity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'moderate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.AtmosphericDrag" title="Link to this definition">#</a></dt>
 <dd><p>Perturbation caused by drag due to Earth’s atmosphere.</p>
 <p>Atmospheric density is found using interpolation of the 2012 Committee on Space Research (COSPAR) International
 Reference Atmosphere (CIRA-12) model. Three different density tables are provided, each representing a varying level
@@ -421,20 +403,9 @@ of solar and geomagnetic activity, selected between using the <code class="docut
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>initial_gmst</strong> (<em>float</em>) – Current angle of the Greenwich meridian in radians.</p></li>
 <li><p><strong>solar_activity</strong> (<em>str</em>) – Which CIRA-12 reference atmosphere model to use for the density. Can select between “low”, “medium”, and “high”.
 See the CIRA-12 offical report <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for more details on how to select between these.</p></li>
 <li><p><strong>solver_tol</strong> (<em>float</em>) – Tolerance to use when solving for the geodetic latitude via fixed-point iteration.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>initial_gmst</strong> (<em>float</em>) – Initial angle of the Greenwich meridian in <span class="math notranslate nohighlight">\(rad\)</span> when propagation began.</p></li>
-<li><p><strong>solver_tol</strong> (<em>float</em>) – Tolerance to use when solving for the geodetic latitude via fixed-point iteration.</p></li>
-<li><p><strong>densities</strong> (<em>scipy.BSpline</em>) – Piece-wise linear spline generated from a density curve where the independent variable is altitudes in
-<span class="math notranslate nohighlight">\(km\)</span> and the dependent variable is densities in <span class="math notranslate nohighlight">\(kg/m^3\)</span>.</p></li>
-<li><p><strong>exosphere_bound</strong> (<em>float</em>) – Upper limit of the exosphere in <span class="math notranslate nohighlight">\(km\)</span> above which the density is assumed to be zero and hence there is no
-drag.</p></li>
 </ul>
 </dd>
 </dl>
@@ -459,20 +430,6 @@ drag.</p></li>
 <p>Vallado, D. A., Fundamentals of Astrodynamics and Applications, 3rd ed., Microcosm Press/Springer, 2007.</p>
 </aside>
 </aside>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.AtmosphericDrag.compute_altitude">
-<span class="sig-name descname"><span class="pre">compute_altitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.AtmosphericDrag.compute_altitude" title="Link to this definition">#</a></dt>
-<dd><p>Compute the altitude above the surface of an ellipsoid Earth.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>position</strong> (<em>np.ndarray</em>) – Current position in PCI coordinates.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>altitude</strong> (<em>float</em>) – Current height above sea level of an ellipsoid Earth.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="hohmannpy.astro.AtmosphericDrag.evaluate">
 <span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.AtmosphericDrag.evaluate" title="Link to this definition">#</a></dt>
@@ -543,7 +500,6 @@ drag.</p></li>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.AtmosphericDrag"><code class="docutils literal notranslate"><span class="pre">AtmosphericDrag</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.AtmosphericDrag.compute_altitude"><code class="docutils literal notranslate"><span class="pre">AtmosphericDrag.compute_altitude()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.AtmosphericDrag.evaluate"><code class="docutils literal notranslate"><span class="pre">AtmosphericDrag.evaluate()</span></code></a></li>
 </ul>
 </li>

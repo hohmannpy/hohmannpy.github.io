@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -429,95 +411,7 @@ parameter being under <code class="docutils literal notranslate"><span class="pr
 <li><p><strong>stumpff_series_length</strong> (<em>int</em>) – When the Stumpff series are computed via summation, how many terms to include.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>solver_tol</strong> (<em>float</em>) – Error tolerance when performing root-finding to solver Kepler’s equation.</p></li>
-<li><p><strong>fg_constraint</strong> (<em>bool</em>) – Flag which indicates whether to compute the derivative of the g function (<code class="docutils literal notranslate"><span class="pre">False</span></code>) or to use a constraint to
-eliminate it (<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p></li>
-<li><p><strong>stumpff_tol</strong> (<em>float</em>) – Tolerance at which to switch to the infinite series definition of the Stumpff series.</p></li>
-<li><p><strong>stumpff_series_length</strong> (<em>int</em>) – When the Stumpff series are computed via summation, how many terms to include.</p></li>
-<li><p><strong>initial_times</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em>) – The base point times at which propagation began.</p></li>
-<li><p><strong>initial_positions</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>np.ndarray</em><em>]</em>) – The base point positions at which propagation began.</p></li>
-<li><p><strong>initial_velocities</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>np.ndarray</em><em>]</em>) – The base point velocities at which propagation began.</p></li>
-</ul>
-</dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator.kepler_equation">
-<span class="sig-name descname"><span class="pre">kepler_equation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inverse_sm_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grav_param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator.kepler_equation" title="Link to this definition">#</a></dt>
-<dd><p>Function used to compute the new universal variable directly as a function of time.</p>
-<p>Kepler’s equation is transcendental wrt. universal variable so root-finding via <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.newton()</span></code>
-is used to solve for it. The ideal initial guess is just the universal variable on the previous timestep.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>time</strong> (<em>float</em>) – Current time.</p></li>
-<li><p><strong>inverse_sm_axis</strong> (<em>float</em>) – Inverse of the semi-major axis of the orbit.</p></li>
-<li><p><strong>grav_param</strong> (<em>float</em>) – Gravitational parameter of the orbit.</p></li>
-<li><p><strong>initial_time</strong> (<em>float</em>) – Base point for time at which propagation began.</p></li>
-<li><p><strong>initial_position</strong> (<em>np.ndarray</em>) – Base point for position when propagation began.</p></li>
-<li><p><strong>initial_velocity</strong> (<em>np.ndarray</em>) – Base point for velocity when propagation began.</p></li>
-<li><p><strong>initial_guess</strong> (<em>float</em>) – Initial guess for the universal variable.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>universal_variable</strong> (<em>float</em>) – Universal_variable at the next time step.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator.propagate">
-<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator.propagate" title="Link to this definition">#</a></dt>
-<dd><p>Perform orbit propagation using the universal variable form of Kepler’s method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>satellites</strong> (dict[str, <a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]) – Dictionary which hold the orbits to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attached to each satellite.
-Satellites are indexed by their name.</p></li>
-<li><p><strong>runtime</strong> (<em>float</em>) – How many <span class="math notranslate nohighlight">\(s\)</span> to run the propagation for.</p></li>
-<li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation. Note that if any are
-added a non-Keplerian propagator such as <code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code> must be used.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator.step" title="Link to this definition">#</a></dt>
-<dd><p>One step in the propagation loop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – Name of the satellite being propagated.</p></li>
-<li><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>) – Satellite being propagated. Holds the orbit to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code>.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.UniversalVariablePropagator.stumpff_funcs">
-<span class="sig-name descname"><span class="pre">stumpff_funcs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stumpff_param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.UniversalVariablePropagator.stumpff_funcs" title="Link to this definition">#</a></dt>
-<dd><p>Computes the Stumpff functions/series for a given value of the Stumpff parameter.</p>
-<p>The form of the Stumpff series is not based off the type of orbit, instead it is based of the sign and magnitude
-of the Stumpff parameter. Large and positive = trigonometric, small = summation, large and negative = hyper-
-trigonometric.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stumpff_param</strong> (<em>float</em>) – The current Stumpff parameter.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>s_func</strong> (<em>float</em>) – The “sine” Stumpff function/series.</p></li>
-<li><p><strong>c_func</strong> (<em>float</em>) – The “cosine” Stumpff function/series.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -569,13 +463,7 @@ trigonometric.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.kepler_equation"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.kepler_equation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.propagate"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.propagate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.step"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.step()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator.stumpff_funcs"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator.stumpff_funcs()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.UniversalVariablePropagator"><code class="docutils literal notranslate"><span class="pre">UniversalVariablePropagator</span></code></a></li>
 </ul>
   </nav></div>
 

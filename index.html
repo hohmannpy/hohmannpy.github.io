@@ -45,7 +45,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="User Guide" href="user_guide/index.html" />
+    <link rel="next" title="Installation" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -131,6 +131,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="user_guide/index.html">
     User Guide
   </a>
@@ -140,13 +147,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="api/index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -226,6 +226,13 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="user_guide/index.html">
     User Guide
   </a>
@@ -235,13 +242,6 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="api/index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -300,13 +300,18 @@
 <p>HohmannPy is an open-source Python library built for rapid spacecraft mission design and iteration.</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/quickstart.html">Quickstart Guide</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#your-first-simulation">Your First Simulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#setting-up-a-mission">Setting up a Mission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#displaying-results">Displaying Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/quickstart.html#advanced-features">Advanced Features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/increasing_fidelity.html">Increasing Simulation Fidelity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/propagator.html">Choosing a Propagator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/perturbations.html">Perturbations and Maneuvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/parallel.html">Parallel Processing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
@@ -315,6 +320,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/astro/earth.html">astro.Earth</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/astro/groundtracks.html">astro.Groundtrack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/astro/logging/index.html">astro.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/astro/maneuvers/index.html">astro.maneuvers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/astro/mission.html">astro.Mission</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/astro/moon.html">astro.Moon</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/astro/perturbations/index.html">astro.perturbations</a></li>
@@ -324,19 +330,11 @@
 <li class="toctree-l3"><a class="reference internal" href="api/astro/time.html">astro.Time</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api/dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="api/dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api/ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="theory/index.html">Theory</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="theory/readings.html">Recommended Readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </li>
 </ul>
@@ -354,11 +352,11 @@
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="user_guide/index.html"
+       href="installation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">User Guide</p>
+        <p class="prev-next-title">Installation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

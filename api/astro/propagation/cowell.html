@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -417,86 +399,9 @@ time as opposed to a Keplerian propagator which has a fixed accuracy. To mitigat
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>step_size</strong> (<em>float</em>) – Time interval between propagation steps. If one is not provided by the user it will be set in
-<a class="reference internal" href="#hohmannpy.astro.CowellPropagator.propagate" title="hohmannpy.astro.CowellPropagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a> to 60 <span class="math notranslate nohighlight">\(s\)</span>.</p>
-</dd>
-<dt class="field-even">Variables<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>step_size</strong> (<em>float</em>) – Time interval between propagation steps. If one is not provided by the user it will be set in
-<a class="reference internal" href="#hohmannpy.astro.CowellPropagator.propagate" title="hohmannpy.astro.CowellPropagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a> to 60 <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code> to 60 <span class="math notranslate nohighlight">\(s\)</span>.</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.CowellPropagator.eom">
-<span class="sig-name descname"><span class="pre">eom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.CowellPropagator.eom" title="Link to this definition">#</a></dt>
-<dd><p>Equations of motion for a spacecraft in first order form where the state is given as (position, velocity).</p>
-<p>The default acceleration is the two-body acceleration due to the point mass acceleration of the central body.
-The perturbing accelerations are then added by calling <a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a> .
-<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation.evaluate" title="hohmannpy.astro.Perturbation.evaluate"><code class="xref py py-class docutils literal notranslate"><span class="pre">evaluate()</span></code></a> for each perturbation in <code class="docutils literal notranslate"><span class="pre">perturbing_forces</span></code> as well as any
-<code class="xref py py-class docutils literal notranslate"><span class="pre">ContinuousBurns</span></code> from <code class="docutils literal notranslate"><span class="pre">satellite.continuous_burns</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>t</strong> (<em>float</em>) – Current time since propagation began,</p></li>
-<li><p><strong>y</strong> (<em>np.ndarray</em>) – (6, ) array representing the satellite’s current state as (position, velocity).</p></li>
-<li><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>) – The satellite whose orbit is being propagated. Do not access the position and velocity of the satellite
-through its <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attribute. Only use this to access static properties like <code class="docutils literal notranslate"><span class="pre">orbit.grav_param</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>y_dot</strong> (<em>np.ndarray</em>) – (6, ) array corresponding the derivative of the satellite’s current state as (velocity, acceleration).</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.CowellPropagator.propagate">
-<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perturbing_forces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.CowellPropagator.propagate" title="Link to this definition">#</a></dt>
-<dd><p>Perform orbit propagation using Cowell’s method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>satellites</strong> (dict[str, <a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>]) – Dictionary which hold the orbits to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attached to each satellite.
-Satellites are indexed by their name.</p></li>
-<li><p><strong>runtime</strong> (<em>float</em>) – How many <span class="math notranslate nohighlight">\(s\)</span> to run the propagation for.</p></li>
-<li><p><strong>perturbing_forces</strong> (list[<a class="reference internal" href="../perturbations/base.html#hohmannpy.astro.Perturbation" title="hohmannpy.astro.Perturbation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Perturbation</span></code></a>]) – Perturbations to add to the mission to increase the fidelity of orbital simulation.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.CowellPropagator.rk4">
-<span class="sig-name descname"><span class="pre">rk4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.CowellPropagator.rk4" title="Link to this definition">#</a></dt>
-<dd><p>Perform one step of 4th-order Runge Kutta integration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>t0</strong> (<em>float</em>) – Base time point at which to start integration step.</p></li>
-<li><p><strong>y0</strong> (<em>np.ndarray</em>) – Base state point at which to start integration step.</p></li>
-<li><p><strong>delt</strong> (<em>float</em>) – Time increment to propagate over.</p></li>
-<li><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>) – The satellite whose orbit is being propagated. Do not access the position and velocity of the satellite
-through its <code class="docutils literal notranslate"><span class="pre">orbit</span></code> attribute. Only use this to access static properties like <code class="docutils literal notranslate"><span class="pre">orbit.grav_param</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>y</strong> (<em>np.ndarray</em>) – Approximated state at time t0 + step_size.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.CowellPropagator.step">
-<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">satellite</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_change</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.CowellPropagator.step" title="Link to this definition">#</a></dt>
-<dd><p>One step in the propagation loop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>satellite</strong> (<a class="reference internal" href="../spacecraft.html#hohmannpy.astro.Satellite" title="hohmannpy.astro.Satellite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Satellite</span></code></a>) – Satellite being propagated. Holds the orbit to propagate as an attribute named <code class="docutils literal notranslate"><span class="pre">orbit</span></code>.</p></li>
-<li><p><strong>time_change</strong> (<em>float</em>) – Change in time to propagate over.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -548,13 +453,7 @@ through its <code class="docutils literal notranslate"><span class="pre">orbit</
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator"><code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator.eom"><code class="docutils literal notranslate"><span class="pre">CowellPropagator.eom()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator.propagate"><code class="docutils literal notranslate"><span class="pre">CowellPropagator.propagate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator.rk4"><code class="docutils literal notranslate"><span class="pre">CowellPropagator.rk4()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator.step"><code class="docutils literal notranslate"><span class="pre">CowellPropagator.step()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.CowellPropagator"><code class="docutils literal notranslate"><span class="pre">CowellPropagator</span></code></a></li>
 </ul>
   </nav></div>
 

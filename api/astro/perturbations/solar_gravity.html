@@ -145,13 +145,6 @@
   </a>
 </li>
 
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
-  </a>
-</li>
-
   </ul>
 </nav></div>
       
@@ -235,13 +228,6 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../index.html">
     API Reference
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../theory/index.html">
-    Theory
   </a>
 </li>
 
@@ -329,15 +315,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../time.html">astro.Time</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dynamics/index.html">Dynamics (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.dynamics</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamics/euler_2_dcm.html">dynamics.euler_2_dcm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ui/index.html">User Interface (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.ui</span></code>)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/camera.html">ui.OrbitalCamera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/render_engine.html">ui.RenderEngine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ui/dy_render_engine.html">ui.DynamicRenderEngine</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../viewer/index.html">Viewer (<code class="xref py py-mod docutils literal notranslate"><span class="pre">hohmannpy.viewer</span></code>)</a></li>
 </ul>
 </div>
 </nav></div>
@@ -438,23 +420,6 @@ their potential similarities.</p></li>
 </dd>
 </dl>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="hohmannpy.astro.SolarGravity.finalize__init__">
-<span class="sig-name descname"><span class="pre">finalize__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_global_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_global_time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hohmannpy.astro.SolarGravity.finalize__init__" title="Link to this definition">#</a></dt>
-<dd><p>Extension of <a class="reference internal" href="third_body_gravity.html#hohmannpy.astro.ThirdBodyGravity" title="hohmannpy.astro.ThirdBodyGravity"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThirdBodyGravity</span></code></a> .
-<a class="reference internal" href="third_body_gravity.html#hohmannpy.astro.ThirdBodyGravity.finalize__init__" title="hohmannpy.astro.ThirdBodyGravity.finalize__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">finalize__init__()</span></code></a> that creates an Earth object and then calculates
-its orbit around the Sun. This can be inverted to get the Sun’s “orbit” about the Earth.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>initial_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation begins. Used to compute the time (in days) since the Earth’s
-last aphelion passage for the solar irradiance model.</p></li>
-<li><p><strong>final_global_time</strong> (<a class="reference internal" href="../time.html#hohmannpy.astro.Time" title="hohmannpy.astro.time.Time"><em>time.Time</em></a>) – Gregorian date and UT1 time at which simulation ends.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -506,10 +471,7 @@ last aphelion passage for the solar irradiance model.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarGravity"><code class="docutils literal notranslate"><span class="pre">SolarGravity</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarGravity.finalize__init__"><code class="docutils literal notranslate"><span class="pre">SolarGravity.finalize__init__()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hohmannpy.astro.SolarGravity"><code class="docutils literal notranslate"><span class="pre">SolarGravity</span></code></a></li>
 </ul>
   </nav></div>
 
