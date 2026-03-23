@@ -1,6 +1,0 @@
-astro.J2
-===================================
-
-.. currentmodule:: hohmannpy.astro
-.. autoclass:: J2
-   :members:
